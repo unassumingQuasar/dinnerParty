@@ -22,7 +22,7 @@ exports.addGuest = function(req, res){
 }
 
 
-export.getAllGuests = function(req, res){
+exports.getAllGuests = function(req, res){
   //get all guests for specific event
 
 }
