@@ -1,7 +1,5 @@
 var pg = require('pg');
-
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/db';
-
 var db = new pg.Client(connectionString);
 db.connect();
 
@@ -17,12 +15,9 @@ exports.createTables = function() {
       '(user_id SERIAL REFERENCES users(id),'+
       'product_id SERIAL REFERENCES events(id),'+
       'status VARCHAR(30))');
-  
 };
 
-
-
-
+ //example command if entered directly into PSQL terminal
 // CREATE TABLE user_events(
 // user_id SERIAL REFERENCES users(id),
 // product_id SERIAL REFERENCES events(id),
