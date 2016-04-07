@@ -2,9 +2,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
-
+var database = require('./models/schema.js')
 var app = express();
 var port = 3000;
+
+database.createTables();
 
 
 //body parse json
