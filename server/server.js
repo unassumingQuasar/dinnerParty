@@ -20,9 +20,9 @@ app.use(express.static(path.join(__dirname + '/../client')))
 
 
 //add routing
-// var partyRouter = require('/../routes/PartyRouter.js');
+var partyRouter = require('/../routes/PartyRouter.js');
 //add in optional url and additional routes if neccessary
-// app.use(partyRouter);
+app.use(partyRouter);
 
 
 
