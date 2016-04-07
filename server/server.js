@@ -8,6 +8,8 @@ var port = 3000;
 
 
 
+
+
 //body parse json
 app.use(bodyParser.urlencoded({ extended: false })); 
 app.use(bodyParser.json());
@@ -18,8 +20,7 @@ app.use(express.static(path.join(__dirname + '/../client')));
 
 //add routing
 var partyRouter = require(path.join(__dirname + '/routes/PartyRouter.js'));
-
-
+//add in optional url and additional routes if neccessary
 
 app.use(partyRouter);
 
