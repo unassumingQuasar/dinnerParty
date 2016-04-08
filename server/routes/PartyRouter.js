@@ -5,13 +5,13 @@ var eventController = require('../controllers/eventController.js')
 
 
 //signup
-partyRouter.route('/signup')
-  .post(userController.addUser);
+// partyRouter.route('/signup')
+//   .get(userController.addUser);
 
 //login in
 //please adapt when making auth
-partyRouter.route('/login')
-  .post(userController.getUser);
+partyRouter.route('/googleLogin')
+  .get(userController.googleLogin);
 
 //handles request that wants to make a new event by a specific host
 partyRouter.route('/event')
@@ -28,6 +28,8 @@ partyRouter.route('/eventlist')
 //handles request that wants one specific event
 partyRouter.route('/eventDetails')
   .get(eventController.getOneEvent);
+
+
 
   
 

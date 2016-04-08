@@ -2,66 +2,56 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
-var database = require('./models/schema.js')
-//paypal authorization stuff
-var passport = require('passport');
-var paypal = require('./paypal.js');
-var util = require('util');
-var PayPalStrategy = require('passport-paypal-oauth').Strategy;
-
-passport.use(passport.initialize());
-
-
-//session setup
-// passport.serializeUser(function(user, done) {
-//   done(null, user);
-// });
-
-// passport.deserializeUser(function(obj, done) {
-//   done(null, obj);
-// });
-
-
-
-//configuration
-// passport.use(new PayPalStrategy({
-//     clientID: paypal.PAYPAL_APP_ID,
-//     clientSecret: paypal.PAYPAL_APP_SECRET,
-//     callbackURL: "http://localhost:3000/auth/paypal/callback"
-//   },
-//   function(accessToken, refreshToken, profile, done) {
-//     console.log('AUTHING');
-//     User.findOrCreate({ paypalId: profile.id }, function (err, user) {
-//       return done(err, user);
-//     });
-//   }
-// ));
-
-
+// var database = require('./models/schema.js')
 
 var app = express();
+
 var port = 3000;
+var passport = require('passport');
+var google = require(path.join(__dirname + '/google.js'));
+var util = require('util');
+var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
+// database.createTables();
 
-database.createTables();
+//google oAUTH
+  passport.use(passport.initialize());
 
+  //for sessions
+  // passport.serializeUser(function(user, done) {
+  //   done(null, user);
+  // });
 
-// app.get('/auth/paypal', 
-//   passport.authenticate('paypal', { failureRedirect: '/signup' }),
-//   function(req, res) {
-//     // Successful authentication, redirect home.
-//     console.log('AUTHINGEVEN MORE');
-//     res.send(200);
-//     res.redirect('/');
-//   });
+  // passport.deserializeUser(function(obj, done) {
+  //   done(null, obj);
+  // });
 
-// app.get('/auth/paypal/callback', 
-//   passport.authenticate('paypal', { failureRedirect: '/' }),
-//   function(req, res) {
-//     // Successful authentication, redirect home.
-//     console.log('AUTHINGEVEN MORE');
-//     res.send(200);
-//     res.redirect('/');
-//   });
+   
+  passport.use(new GoogleStrategy({
+      clientID:     google.GOOGLE_CLIENT_ID,
+      clientSecret: google.GOOGLE_CLIENT_SECRET,
+      callbackURL: "http://localhost:3000/googlecallback",
+      passReqToCallback   : true
+    },
+    function(request, accessToken, refreshToken, profile, done) {
+      console.log('GOOGLY LOGIN', profile);
+      
+      // User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      //   return done(err, user);
+      // });
+    }
+  ));
+
+  app.get('/auth/google', passport.authenticate('google', { scope: [
+       'https://www.googleapis.com/auth/plus.login',
+       'https://www.googleapis.com/auth/plus.profile.emails.read'] 
+  }));
+
+  app.get( '/googlecallback', 
+      passport.authenticate( 'google', { 
+        successRedirect: '/',
+        failureRedirect: '/googleLogin'
+  }));
+
 
 
 //body parse json
@@ -71,8 +61,6 @@ app.use(bodyParser.json());
 
 //server up all static files
 app.use(express.static(path.join(__dirname + '/../client')));
-
-//serve up test 
 
 
 //connect db?
