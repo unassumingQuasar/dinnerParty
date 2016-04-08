@@ -2,17 +2,12 @@
   <head>
   </head>
   <body>
-    <h1>Development Time!</h1>
+    <h1>Test</h1>
 
     <!-- initial react app tag -->
-    <div id="app"></div>
+    <div id="container"></div>
 
-    <!-- react and redux script tags -->
-    <script src="../node_modules/react/react.js"></script>
-    <script src="../node_modules/react-dom/dist/react-dom.js"></script>
-    <script src="../node_modules/redux/dist/redux.js"></script>
-    <script src="../node_modules/react-redux/src/index.js"></script>
-
-    <script type="text/babel" scr="app/app.js"></script>
+    <!-- this is where the webpack.config serves the files, see output publicPath -->
+    <script src="bundle.js"></script>
   </body>
 </html>
