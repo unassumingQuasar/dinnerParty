@@ -6,6 +6,9 @@
   "scripts": {
     "test": "test"
   },
+  "scripts": {
+    "server": "webpack-dev-server"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
