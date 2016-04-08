@@ -29,6 +29,8 @@ partyRouter.route('/eventlist')
 partyRouter.route('/eventDetails')
   .get(eventController.getOneEvent);
 
+  
+
 
 
 

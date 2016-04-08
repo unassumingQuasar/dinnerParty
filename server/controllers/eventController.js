@@ -1,6 +1,15 @@
+var Sequelize = require('sequelize');
+
+
 //make a new event by a specific host
 exports.createEvent = function(req, res){
+  console.log('createEvent');
+//    Event.findOne()
 
+// .then(for each user
+
+//     .addUsers(user)
+//   )
 }
 
 //get events for users dashboard

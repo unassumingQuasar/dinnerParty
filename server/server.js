@@ -2,11 +2,10 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
-var database = require('./models/schema.js')
+var db = require('./config/init.js')
 var app = express();
 var port = 3000;
 
-database.createTables();
 
 
 //body parse json
@@ -14,13 +13,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //server up all static files
-app.use(express.static(path.join(__dirname + '/../client')))
+app.use(express.static(path.join(__dirname + '/../client')));
 
-//connect db?
 
 //add routing
-var partyRouter = require('./routes/PartyRouter.js');
-//add in optional url and additional routes if neccessary
+var partyRouter = require(path.join(__dirname + '/routes/PartyRouter.js'));
+
+
 
 app.use(partyRouter);
 
