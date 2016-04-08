@@ -9,7 +9,8 @@ var db = new Sequelize('dinnerParty', null, null, {
 
 
 exports.User = db.define('User', {
- name: Sequelize.STRING  
+ name: Sequelize.STRING,
+ googleId: Sequelize.STRING,  
 });
 
 exports.Event = db.define('Event', {
