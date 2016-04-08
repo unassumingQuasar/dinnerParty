@@ -5,28 +5,28 @@ var eventController = require('../controllers/eventController.js')
 
 
 //signup
-partyRouter.routes('/signup')
+partyRouter.route('/signup')
   .post(userController.addUser);
 
 //login in
 //please adapt when making auth
-partyRouter.routes('/login')
+partyRouter.route('/login')
   .post(userController.getUser);
 
 //handles request that wants to make a new event by a specific host
-partyRouter.routes('/event')
+partyRouter.route('/event')
   .post(eventController.createEvent);
 
 //handles request that wants all guest on specific event
-partyRouter.routes('/guestlist')
+partyRouter.route('/guestlist')
   .get(eventController.getAllGuests);
 
 //handles request that wants all events on specific user
-partyRouter.routes('/eventlist')
+partyRouter.route('/eventlist')
   .get(eventController.getAllEvents);
 
 //handles request that wants one specific event
-partyRouter.routes('/eventDetails')
+partyRouter.route('/eventDetails')
   .get(eventController.getOneEvent);
 
 
