@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//TODO: nest imports inside of their parent components
+
+//components
 import CreatePartyForm from './CreatePartyForm.jsx';
-import GuestRow from './GuestRow.jsx';
 import GuestsTable from './GuestsListTable.jsx';
 import LoginForm from './LoginForm.jsx';
-import InviteFriendForm from './InviteFriendForm.jsx';
 import PartyDetailsTable from './PartyDetailsTable.jsx';
-import PartyRow from './PartyRow.jsx';
 import SignUpForm from './SignUpForm.jsx';
 
 var GuestListData = [

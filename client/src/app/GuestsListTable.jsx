@@ -1,4 +1,4 @@
-import Gue
+import GuestRow from './GuestRow.jsx';
 
 var GuestsTable = (props) => (
   <table>
