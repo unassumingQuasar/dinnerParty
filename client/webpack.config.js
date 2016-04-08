@@ -18,7 +18,7 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           //added react-require to fix React is not defined issue
-          //did not work
+          //react-require must go before 'transform-runtime'
           plugins: ['react-require', 'transform-runtime'],
           presets: ['es2015', 'react']
         }
