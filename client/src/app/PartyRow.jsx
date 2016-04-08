@@ -1,4 +1,3 @@
-
 class PartyRow extends React.Component {
   constructor(props) {
     super(props);
@@ -17,5 +16,4 @@ class PartyRow extends React.Component {
   }
 }
 
-
-window.PartyRow = PartyRow;
+export default PartyRow;

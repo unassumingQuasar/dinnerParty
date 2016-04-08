@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-// var Hello = React.createClass({
-//   render: function() {
-//     return <div>Hello {this.props.name}</div>;
-//   }
-// });
-
-// ReactDOM.render(
-//   <h1>Hello word!!</h1>,
-//   document.getElementById('container')
-// );
+//TODO: nest imports inside of their parent components
+import CreatePartyForm from './CreatePartyForm.jsx';
+import GuestRow from './GuestRow.jsx';
+import GuestsTable from './GuestsListTable.jsx';
+import LoginForm from './LoginForm.jsx';
+import InviteFriendForm from './InviteFriendForm.jsx';
+import PartyDetailsTable from './PartyDetailsTable.jsx';
+import PartyRow from './PartyRow.jsx';
+import SignUpForm from './SignUpForm.jsx';
 
 var GuestListData = [
  {name: 'Mark'},
@@ -41,7 +39,6 @@ description: 'so much fun so much fun so much fun so much fun so much fun'
 }
 ];
 
-
 class App extends React.Component {
  constructor(){
    super();
@@ -56,7 +53,6 @@ handleSubmit(event, formInput) {
    return (
      <div>
        <CreatePartyForm handleSubmit={this.handleSubmit.bind(this)}/ >
-       <InviteFriendForm />
        <PartyDetailsTable partyDetails={PartyDetailsData}/ >
        <SignUpForm handleSubmit={this.handleSubmit.bind(this)}/ >
        <LoginForm handleSubmit={this.handleSubmit.bind(this)}/ >
@@ -65,7 +61,5 @@ handleSubmit(event, formInput) {
    )
  }
 }
-
-
 
 ReactDOM.render( <App />, document.getElementById('app') );

@@ -84,5 +84,4 @@ class CreatePartyForm extends React.Component {
   }
 }
 
-
-window.CreatePartyForm = CreatePartyForm;
+export default CreatePartyForm;

@@ -1,3 +1,4 @@
+import Gue
 
 var GuestsTable = (props) => (
   <table>
@@ -10,4 +11,4 @@ var GuestsTable = (props) => (
   </table>
 );
 
-window.GuestsTable = GuestsTable;
+export default GuestsTable;

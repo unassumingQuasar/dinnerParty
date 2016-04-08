@@ -1,3 +1,4 @@
+import PartyRow from './PartyRow.jsx';
 
 var PartyDetailsTable = (props) => (
   <table>
@@ -10,4 +11,4 @@ var PartyDetailsTable = (props) => (
   </table>
 );
 
-window.PartyDetailsTable = PartyDetailsTable;
+export default PartyDetailsTable;

@@ -1,5 +1,5 @@
 class InviteFriendForm extends React.Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       inviteList: []
@@ -9,7 +9,6 @@ class InviteFriendForm extends React.Component {
     event.preventDefault();
     console.log(formInput);
   }
-
 
   handleInviteListChange(event) {
     event.preventDefault();
@@ -31,7 +30,6 @@ class InviteFriendForm extends React.Component {
           placeholder="Invite friends!"
         />
 
-
         <button type="submit">
           Add a Friend
         </button>
@@ -41,4 +39,4 @@ class InviteFriendForm extends React.Component {
   }
 }
 
-window.InviteFriendForm = InviteFriendForm;
+export default InviteFriendForm;

@@ -1,4 +1,3 @@
-
 class GuestRow extends React.Component {
   constructor(props) {
     super(props);
@@ -14,4 +13,4 @@ class GuestRow extends React.Component {
 }
 
 
-window.GuestRow = GuestRow;
+export default GuestRow;

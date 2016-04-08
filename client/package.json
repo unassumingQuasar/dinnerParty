@@ -4,10 +4,7 @@
   "description": "client side dependencies",
   "main": "index.js",
   "scripts": {
-    "test": "test"
-  },
-  "scripts": {
-    "server": "webpack-dev-server"
+    "start": "webpack-dev-server"
   },
   "author": "",
   "license": "ISC",
@@ -27,6 +24,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "devDependencies": {
+    "babel-plugin-react-require": "^2.1.0",
     "babel-plugin-transform-runtime": "^6.6.0",
     "redux-devtools": "^3.2.0"
   }
