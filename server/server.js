@@ -13,20 +13,16 @@ database.createTables();
 app.use(bodyParser.urlencoded({ extended: false })); 
 app.use(bodyParser.json());
 
-
 //server up all static files
 app.use(express.static(path.join(__dirname + '/../client')))
 
-
 //connect db?
 
-
 //add routing
-var partyRouter = require('/../routes/PartyRouter.js');
+var partyRouter = require('./routes/PartyRouter.js');
 //add in optional url and additional routes if neccessary
+
 app.use(partyRouter);
-
-
 
 //app is listening on port 3000
 app.listen( port, function(err){
