@@ -2,23 +2,23 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  entry: [
-    'babel-polyfill',
-    './src/app/app.js'
-  ],
+  entry: './src/app/app.jsx',
   output: {
-      publicPath: path.join(__dirname, 'src'),
-      filename: 'app.js'
+      path: path.join(__dirname, 'src'),
+      publicPath: '/src/',
+      filename: 'bundle.js'
   },
-  devtool: 'source-map',
+  // devtool: 'source-map',
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/, //reg-ex for js & jsx
         include: path.join(__dirname, 'src'),
+        exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ["es2015"],
+          plugins: ['transform-runtime'],
+          presets: ['es2015', 'react']
         }
       }
     ]
