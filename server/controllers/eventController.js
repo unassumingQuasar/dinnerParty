@@ -1,38 +1,38 @@
 var Sequelize = require('sequelize');
 var db = require('../config/init.js');
 
+
 //make a new event by a specific host
 exports.createEvent = function(req, res){
-  var data = req.body;
-  db.Event.findOne({name: 'stuff'})
-  .then(function(party){
-    console.log(party);
-  });
-  db.Event.create({
-    name: data.name, 
-    description: data.description, 
-    location: data.location,
-    cost: data.cost })
-    .then(function(event){
-      // console.log('heres the event',event);
-      for(var i = 0; i < data.guests.length; i++){
-        console.log(data.guests[i]);
-      }
-      res.sendStatus(200);
-    });                                                                                                                                            
 
-}
+  db.Event.create(req.body).then(function(event){
+      res.send(event);
+    });
+
+};                                                                                                                                            
+
+
 
 //get events for users dashboard
 exports.getAllEvents = function(req, res){
 
-  // Event.findAll({})
+  db.User.findOne(req.body)
+    .then(function(user){
+      user.getEvents().then(function(events){
+        var eventAttributes=[];
+        for(var i = 0; events.length > i; i++){
+          // if(events[i].UserEvent.status === 'invited'){
+            eventAttributes.push([events[i].id,events[i].UserEvent.status]);
+          // }
 
-
-}
+        }
+      });
+    });
+};
 
 //get one event 
 exports.getOneEvent = function(req, res){
+
 
 }
 
@@ -47,9 +47,23 @@ exports.addGuest = function(req, res, next){
 
 
 exports.getAllGuests = function(req, res){
- //get all guests for specific event
+// get all guests for specific event
+  db.Event.findOne(req.body)
+    .then(function(event){
+      event.getUsers().then(function(users){
+        var userAttributes=[];
+        for(var i = 0; users.length > i; i++) {
+          if(users[i].UserEvent.status === 'invited'){
+            userAttributes.push(users[i].id);
+          }
+          //do something with userAttributes
+          // console.log(userAttributes);
+        }
+      });
+    });
 
-}
+
+};
 
 var addGuest = function(event, guest, next){
  // console.log('HELPER NEXT', event);  
