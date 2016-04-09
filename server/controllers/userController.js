@@ -5,10 +5,11 @@ exports.addUser = function(req, res, next){
   console.log('getuser');
 }
 
-//check user when logging in
-exports.getUser = function(req, res, next){
+exports.googleLogin = function(req, res, next){
 
-}
+
+  console.log('googlllling login controller')
+};
 
 
 

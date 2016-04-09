@@ -77,5 +77,3 @@ var addGuest = function(event, guest, next){
  //   });
  // });
 };
-
-
