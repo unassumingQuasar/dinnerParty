@@ -2,28 +2,26 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
-var db = require('./config/init.js')
 var app = express();
 var port = 3000;
 
-
-
-//body parse json
+//PARSING
 app.use(bodyParser.urlencoded({ extended: false })); 
 app.use(bodyParser.json());
 
-//server up all static files
-app.use(express.static(path.join(__dirname + '/../client')));
+//SERVE UP STATIC FILES
+app.use(express.static(path.join(__dirname + '/../client/src')));
 
+//GOOGLE AUTHENTICATION
+require('./routes/config.js')(app, express);
+//TODO: further modularize code for routing use below line: 
+// require('./routes/PartyRouter.js')(app, express);
 
-//add routing
+//ROUTING
 var partyRouter = require(path.join(__dirname + '/routes/PartyRouter.js'));
-
-
-
 app.use(partyRouter);
 
-//app is listening on port 3000
+//START APP ON PORT 3000
 app.listen( port, function(err){
   if(err) {
     return console.log('error listening on port 3000', err);
