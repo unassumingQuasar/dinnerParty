@@ -3,7 +3,6 @@ var partyRouter = express.Router();
 var userController = require('../controllers/userController.js');
 var eventController = require('../controllers/eventController.js')
 
-
 //signup
 partyRouter.route('/signup')
   .post(userController.addUser);
