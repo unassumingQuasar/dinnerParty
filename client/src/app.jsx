@@ -23,6 +23,7 @@ const App = () => {
 
 ReactDOM.render(<div>
                   <HeaderNavigation />
+                  <br /><br />
                   <App />
                 </div>,
   document.getElementById('app'));
