@@ -9,12 +9,41 @@ exports.createEvent = function(req, res){
       res.send(event);
     });
 
-};                                                                                                                                            
+};
 
 
 
 //get events for users dashboard
 exports.getAllEvents = function(req, res){
+  console.log('you hit events')
+
+  var PartyDetailsData = [
+   {eventName: 'yo mama',
+    location: 'your house',
+    time: '9am',
+    cost: '$5',
+    description: 'so much fun so much fun so much fun so much'
+  },
+
+  {eventName: 'hi',
+   location: 'my house',
+   time: '7am',
+   cost: '$10',
+   description: 'so much fun so much fun so much fun so much fun so much fun so much'
+  },
+
+  {eventName: 'greatThingsHappening',
+  location: 'the park',
+  time: '7pm',
+  cost: '$3',
+  description: 'so much fun so much fun so much fun so much fun so much fun'
+  }
+  ];
+
+  res.send(PartyDetailsData);
+
+
+
 
   db.User.findOne(req.body)
     .then(function(user){
@@ -30,7 +59,7 @@ exports.getAllEvents = function(req, res){
     });
 };
 
-//get one event 
+//get one event
 exports.getOneEvent = function(req, res){
 
 
@@ -47,6 +76,14 @@ exports.addGuest = function(req, res, next){
 
 
 exports.getAllGuests = function(req, res){
+  console.log('get guest list')
+  var GuestListData = [
+   {name: 'santaClause'},
+   {name: 'jane'},
+   {name: 'Lizzie'}
+  ];
+
+res.send(GuestListData);
 // get all guests for specific event
   db.Event.findOne(req.body)
     .then(function(event){
@@ -66,7 +103,7 @@ exports.getAllGuests = function(req, res){
 };
 
 var addGuest = function(event, guest, next){
- // console.log('HELPER NEXT', event);  
+ // console.log('HELPER NEXT', event);
  // console.log(event);
  // db.User.findOne({name: guest}).then(function(guest){
  //   db.Event.findOne({name: event.name})
