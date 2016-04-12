@@ -1,9 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import ajaxPost from '../utils/ajaxPost.jsx';
 
 class CreatePartyForm extends React.Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       eventName: '',
@@ -12,7 +11,7 @@ class CreatePartyForm extends React.Component {
       cost: '',
       description: '',
       inviteList: [],
-      url: 'http://localhost:3000/event'
+      url: 'http://localhost:3000/event',
     };
   }
 
@@ -21,35 +20,35 @@ class CreatePartyForm extends React.Component {
     var url = formInput.url;
     var context = this;
 
-    ajaxPost(url, function(data, context) {
-      this.state = {stateAtribute: data};
-      this.setState({stateAtribute: data});
+    ajaxPost(url, function (data, context) {
+      this.state = { stateAtribute: data };
+      this.setState({ stateAtribute: data });
     }, context, formInput);
   }
 
 
   handleEventNameChange(e) {
-    this.setState({eventName: e.target.value});
+    this.setState({ eventName: e.target.value });
   }
 
   handleLocationChange(e) {
-    this.setState({location: e.target.value});
+    this.setState({ location: e.target.value });
   }
 
   handleTimeChange(e) {
-    this.setState({time: e.target.value});
+    this.setState({ time: e.target.value });
   }
 
   handleCostChange(e) {
-    this.setState({cost: e.target.value});
+    this.setState({ cost: e.target.value });
   }
 
   handleDescriptionChange(e) {
-    this.setState({description: e.target.value});
+    this.setState({ description: e.target.value });
   }
 
   handleInviteListChange(e) {
-    this.setState({description: e.target.value});
+    this.setState({ description: e.target.value });
   }
 
   render() {
@@ -88,7 +87,6 @@ class CreatePartyForm extends React.Component {
             value={this.state.description}
             placeholder="Describe your party"
           />
-
           <button type="submit">
             Create Dinner Party
           </button>
@@ -96,7 +94,7 @@ class CreatePartyForm extends React.Component {
         </form>
 
       </div>
-    )
+    );
   }
 }
 
