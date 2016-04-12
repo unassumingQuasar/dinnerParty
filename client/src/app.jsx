@@ -6,6 +6,7 @@ import dash from './views/dash.jsx';
 import login from './views/login.jsx';
 import about from './views/about.jsx';
 
+import HeaderNavigation from './shared/HeaderNavigation.jsx';
 import 'bootstrap/less/bootstrap.less';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -20,4 +21,8 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<div>
+                  <HeaderNavigation />
+                  <App />
+                </div>,
+  document.getElementById('app'));
