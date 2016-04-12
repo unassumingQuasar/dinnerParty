@@ -1,6 +1,9 @@
 import React from 'react';
 import ajaxPost from '../utils/ajaxPost.jsx';
 
+import Input from 'react-bootstrap/lib/Input';
+import ButtonInput from 'react-bootstrap/lib/ButtonInput';
+
 class CreatePartyForm extends React.Component {
   constructor() {
     super();
@@ -17,8 +20,8 @@ class CreatePartyForm extends React.Component {
 
   handleSubmit(event, formInput) {
     event.preventDefault();
-    var url = formInput.url;
-    var context = this;
+    let url = formInput.url;
+    let context = this;
 
     ajaxPost(url, function (data, context) {
       this.state = { stateAtribute: data };
@@ -53,46 +56,42 @@ class CreatePartyForm extends React.Component {
 
   render() {
     return (
-        <div>
-
+      <div>
         <form onSubmit={(event) => this.handleSubmit(event, this.state)}>
-          <input id="eventName"
+          <Input id="eventName"
             onChange={this.handleEventNameChange.bind(this)}
             type="text" value={this.state.eventName}
             placeholder="Event Name"
           />
 
-          <input id="location"
+          <Input id="location"
             type="text" onChange={this.handleLocationChange.bind(this)}
             value={this.state.location}
             placeholder="Location"
           />
 
-          <input id="time"
+          <Input id="time"
             type="text" onChange={this.handleTimeChange.bind(this)}
             value={this.state.time}
             placeholder="Time"
           />
 
-          <input id="cost"
+          <Input id="cost"
             type="text"
             onChange={this.handleCostChange.bind(this)}
             value={this.state.cost}
             placeholder="Cost"
           />
 
-          <textarea id="description"
-            type="text"
+          <Input id="description"
+            type="textarea"
+            label="Describe the Party!"
             onChange={this.handleDescriptionChange.bind(this)}
             value={this.state.description}
             placeholder="Describe your party"
           />
-          <button type="submit">
-            Create Dinner Party
-          </button>
-
+          <ButtonInput type="submit" bsStyle="success" value="Create Dinner Party" />
         </form>
-
       </div>
     );
   }
