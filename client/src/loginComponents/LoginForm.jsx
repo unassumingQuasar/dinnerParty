@@ -1,20 +1,15 @@
-class SignUpForm extends React.Component {
+class LoginForm extends React.Component {
   constructor(){
     super();
     this.state = {
       userName: '',
-      email: '',
-      password: ''
+      password: '',
+      url: 'http://localhost:3000/login'
     };
   }
 
-
   handleUserNameChange(e) {
     this.setState({userName: e.target.value});
-  }
-
-  handleEmailChange(e) {
-    this.setState({email: e.target.value});
   }
 
   handlePasswordChange(e) {
@@ -35,12 +30,6 @@ class SignUpForm extends React.Component {
         />
 
 
-        <input id="Email"
-          type="text" onChange={this.handleEmailChange.bind(this)}
-          value={this.state.email}
-          placeholder="Email"
-        />
-
         <input id="password"
           type="text" onChange={this.handlePasswordChange.bind(this)}
           value={this.state.password}
@@ -48,7 +37,7 @@ class SignUpForm extends React.Component {
         />
 
         <button type="submit">
-          SignUp for DinnerParty
+          Login to DinnerParty
         </button>
 
       </form>
@@ -56,4 +45,4 @@ class SignUpForm extends React.Component {
   }
 }
 
-export default SignUpForm;
+export default LoginForm;

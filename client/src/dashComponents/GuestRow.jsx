@@ -12,5 +12,4 @@ class GuestRow extends React.Component {
   }
 }
 
-
 export default GuestRow;
