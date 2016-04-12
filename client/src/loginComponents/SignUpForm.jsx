@@ -36,7 +36,7 @@ class SignUpForm extends React.Component {
           />
 
           <Input id="Email"
-            type="text" onChange={this.handleEmailChange.bind(this)}
+            type="email" onChange={this.handleEmailChange.bind(this)}
             value={this.state.email}
             placeholder="Email"
           />
