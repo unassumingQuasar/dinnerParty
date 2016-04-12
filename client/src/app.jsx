@@ -8,8 +8,6 @@ import about from './views/about.jsx';
 
 import 'bootstrap/less/bootstrap.less';
 import 'bootstrap/dist/css/bootstrap.css';
-// import '../node_modules/bootstrap/less/bootstrap.less';
-// import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 const App = () => {
   return (
