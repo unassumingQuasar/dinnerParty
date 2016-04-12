@@ -1,59 +1,56 @@
+import React from 'react';
+
+import ButtonInput from 'react-bootstrap/lib/ButtonInput';
+import Input from 'react-bootstrap/lib/Input';
+
 class SignUpForm extends React.Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       userName: '',
       email: '',
-      password: ''
-  
+      password: '',
     };
   }
 
-
   handleUserNameChange(e) {
-    this.setState({userName: e.target.value});
+    this.setState({ userName: e.target.value });
   }
 
   handleEmailChange(e) {
-    this.setState({email: e.target.value});
+    this.setState({ email: e.target.value });
   }
 
   handlePasswordChange(e) {
-    this.setState({password: e.target.value});
+    this.setState({ password: e.target.value });
   }
 
-
-  //handleSubmit is set as the callback passed through props; not sure if we need in in redux
   render() {
-    return <div>
+    return (
+      <div>
+        <form onSubmit={(event) => this.props.handleSubmit(event, this.state)}>
+          <Input id="userName"
+            onChange={this.handleUserNameChange.bind(this)}
+            type="text" value={this.state.userName}
+            placeholder="What's your name?"
+          />
 
-      <form onSubmit={(event) => this.props.handleSubmit(event, this.state)}>
+          <Input id="Email"
+            type="text" onChange={this.handleEmailChange.bind(this)}
+            value={this.state.email}
+            placeholder="Email"
+          />
 
-        <input id="userName"
-          onChange={this.handleUserNameChange.bind(this)}
-          type="text" value={this.state.userName}
-          placeholder="What's your name?"
-        />
+          <Input id="password"
+            type="text" onChange={this.handlePasswordChange.bind(this)}
+            value={this.state.password}
+            placeholder="Enter a password"
+          />
 
-
-        <input id="Email"
-          type="text" onChange={this.handleEmailChange.bind(this)}
-          value={this.state.email}
-          placeholder="Email"
-        />
-
-        <input id="password"
-          type="text" onChange={this.handlePasswordChange.bind(this)}
-          value={this.state.password}
-          placeholder="Enter a password"
-        />
-
-        <button type="submit">
-          SignUp for DinnerParty
-        </button>
-
-      </form>
-    </div>
+          <ButtonInput bsStyle="success" type="submit" value="Sign up for Dinner Party!" />
+        </form>
+      </div>
+    );
   }
 }
 

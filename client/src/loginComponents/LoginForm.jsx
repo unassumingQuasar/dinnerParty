@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from 'react-bootstrap/lib/Button';
+import ButtonInput from 'react-bootstrap/lib/ButtonInput';
 import Input from 'react-bootstrap/lib/Input';
 
 class LoginForm extends React.Component {
@@ -19,7 +19,8 @@ class LoginForm extends React.Component {
   handlePasswordChange(e) {
     this.setState({ password: e.target.value });
   }
-
+  // TODO: refactor to use getValue() to get the current state
+  // see https://react-bootstrap.github.io/components.html#forms
   render() {
     return (
       <div>
@@ -34,10 +35,7 @@ class LoginForm extends React.Component {
             value={this.state.password}
             placeholder="Enter a password"
           />
-          <Button bsStyle="success" type="submit">
-            Login to DinnerParty
-          </Button>
-
+          <ButtonInput bsStyle="success" type="submit" value="Login to DinnerParty" />
         </form>
       </div>
     );
