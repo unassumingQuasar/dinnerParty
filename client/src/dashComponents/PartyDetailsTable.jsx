@@ -1,34 +1,33 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PartyRow from './PartyRow.jsx';
 
 class PartyDetailsTable extends React.Component {
   constructor() {
     super();
     this.state = {
-      PartyDetailsData: []
+      PartyDetailsData: [],
     };
   }
 
-  componentWillMount(){
-    this.loadCommentsFromServer('http://localhost:3000/eventlist', (data) => { this.setState({PartyDetailsData: data}); });
-  };
+  componentWillMount() {
+    this.loadCommentsFromServer('http://localhost:3000/eventlist', (data) => { this.setState({ PartyDetailsData: data }); });
+  }
 
+  componentDidMount() {
+    console.log(this.state);
+  }
   loadCommentsFromServer(url, stateKey) {
-    console.log('ajax')
+    console.log('ajax');
 
-  $.ajax ({
+    $.ajax ({
       url: url,
       type: 'GET',
       dataType: 'json',
       success: stateKey,
-      error: (data) => { console.log('no dinner party for you!', data); }
+      error: (data) => { console.log('no dinner party for you!', data); },
     });
-  };
-
-  componentDidMount() {
-    console.log(this.state)
   }
+
 
   render() {
     return (
@@ -41,6 +40,6 @@ class PartyDetailsTable extends React.Component {
       </table>
     );
   }
-};
+}
 
 export default PartyDetailsTable;

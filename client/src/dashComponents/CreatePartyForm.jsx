@@ -1,9 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import ajaxPost from '../utils/ajaxPost.jsx';
 
+import Input from 'react-bootstrap/lib/Input';
+import ButtonInput from 'react-bootstrap/lib/ButtonInput';
+
 class CreatePartyForm extends React.Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       eventName: '',
@@ -12,91 +14,86 @@ class CreatePartyForm extends React.Component {
       cost: '',
       description: '',
       inviteList: [],
-      url: 'http://localhost:3000/event'
+      url: 'http://localhost:3000/event',
     };
   }
 
   handleSubmit(event, formInput) {
     event.preventDefault();
-    var url = formInput.url;
-    var context = this;
+    let url = formInput.url;
+    let context = this;
 
-    ajaxPost(url, function(data, context) {
-      this.state = {stateAtribute: data};
-      this.setState({stateAtribute: data});
+    ajaxPost(url, function (data, context) {
+      this.state = { stateAtribute: data };
+      this.setState({ stateAtribute: data });
     }, context, formInput);
   }
 
 
   handleEventNameChange(e) {
-    this.setState({eventName: e.target.value});
+    this.setState({ eventName: e.target.value });
   }
 
   handleLocationChange(e) {
-    this.setState({location: e.target.value});
+    this.setState({ location: e.target.value });
   }
 
   handleTimeChange(e) {
-    this.setState({time: e.target.value});
+    this.setState({ time: e.target.value });
   }
 
   handleCostChange(e) {
-    this.setState({cost: e.target.value});
+    this.setState({ cost: e.target.value });
   }
 
   handleDescriptionChange(e) {
-    this.setState({description: e.target.value});
+    this.setState({ description: e.target.value });
   }
 
   handleInviteListChange(e) {
-    this.setState({description: e.target.value});
+    this.setState({ description: e.target.value });
   }
 
   render() {
     return (
-        <div>
-
+      <div>
         <form onSubmit={(event) => this.handleSubmit(event, this.state)}>
-          <input id="eventName"
+          <Input id="eventName"
             onChange={this.handleEventNameChange.bind(this)}
             type="text" value={this.state.eventName}
             placeholder="Event Name"
           />
 
-          <input id="location"
+          <Input id="location"
             type="text" onChange={this.handleLocationChange.bind(this)}
             value={this.state.location}
             placeholder="Location"
           />
 
-          <input id="time"
+          <Input id="time"
             type="text" onChange={this.handleTimeChange.bind(this)}
             value={this.state.time}
             placeholder="Time"
           />
 
-          <input id="cost"
+          <Input id="cost"
             type="text"
             onChange={this.handleCostChange.bind(this)}
             value={this.state.cost}
             placeholder="Cost"
           />
 
-          <textarea id="description"
-            type="text"
+          <Input id="description"
+            type="textarea"
+            label="Describe the Party!"
             onChange={this.handleDescriptionChange.bind(this)}
             value={this.state.description}
             placeholder="Describe your party"
           />
-
-          <button type="submit">
-            Create Dinner Party
-          </button>
-
+          <ButtonInput type="submit" bsStyle="success" value="Create Dinner Party" />
         </form>
-
       </div>
-    )
+    );
   }
 }
 
