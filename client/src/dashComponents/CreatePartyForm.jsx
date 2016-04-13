@@ -19,87 +19,77 @@ class CreatePartyForm extends React.Component {
     };
   }
 
-  handleSubmit(event, formInput) {
+  handleFormSubmit(event, formInput) {
     event.preventDefault();
     let url = formInput.url;
     let context = this;
 
-  ajaxPost(url, function (data, context) {
-    this.state = { stateAtribute: data };
-    this.setState({ stateAtribute: data });
-  }, context, formInput);
-  console.log(this.state).bind(this);
+    ajaxPost(url, function(data, context) {
+      this.state = { stateAtribute: data };
+      this.setState({ stateAtribute: data });
+    }, context, formInput);
+    console.log(this.state).bind(this);
   }
 
   invitePerson(person) {
-    var invited = this.state.inviteList;
+    let invited = this.state.inviteList;
     invited.push(person);
-    this.setState({inviteList: invited});
+    this.setState({ inviteList: invited });
     console.log(this.state.inviteList).bind(this);
   }
 
-
-  handleEventNameChange(e) {
-    this.setState({ eventName: e.target.value });
-  }
-
-  handleLocationChange(e) {
-    this.setState({ location: e.target.value });
-  }
-
-  handleTimeChange(e) {
-    this.setState({ time: e.target.value });
-  }
-
-  handleCostChange(e) {
-    this.setState({ cost: e.target.value });
-  }
-
-  handleDescriptionChange(e) {
-    this.setState({ description: e.target.value });
-  }
-
-  handleInviteListChange(e) {
-    this.setState({ description: e.target.value });
+  onChange(source, e) {
+    let state = Object.assign({}, this.state);
+    state[source] = e.target.value;
+    console.log(state);
+    this.setState(state);
   }
 
   render() {
     return (
       <div>
         <form onSubmit={(event) => this.handleSubmit(event, this.state)}>
-          <Input id="eventName"
-            onChange={this.handleEventNameChange.bind(this)}
-            type="text" value={this.state.eventName}
-            placeholder="Event Name"
-          />
-
-          <Input id="location"
-            type="text" onChange={this.handleLocationChange.bind(this)}
-            value={this.state.location}
-            placeholder="Location"
-          />
-
-          <Input id="time"
-            type="text" onChange={this.handleTimeChange.bind(this)}
-            value={this.state.time}
-            placeholder="Time"
-          />
-
-          <Input id="cost"
+          <Input
+            id="eventName"
             type="text"
-            onChange={this.handleCostChange.bind(this)}
-            value={this.state.cost}
+            placeholder="Event Name"
+            value={this.state.eventName}
+            onChange={this.onChange.bind(this, 'eventName')}
+          />
+          <Input
+            id="location"
+            type="text"
+            placeholder="Location"
+            value={this.state.location}
+            onChange={this.onChange.bind(this, 'location')}
+          />
+          <Input
+            id="time"
+            type="text"
+            placeholder="Time"
+            value={this.state.time}
+            onChange={this.onChange.bind(this, 'time')}
+          />
+          <Input
+            id="cost"
+            type="text"
             placeholder="Cost"
+            value={this.state.cost}
+            onChange={this.onChange.bind(this, 'cost')}
           />
-
-          <Input id="description"
+          <Input
+            id="description"
             type="textarea"
-            label="Describe the Party!"
-            onChange={this.handleDescriptionChange.bind(this)}
+            label="Describe the party!"
+            placeholder="Description"
             value={this.state.description}
-            placeholder="Describe your party"
+            onChange={this.onChange.bind(this, 'description')}
           />
-          <ButtonInput type="submit" bsStyle="success" value="Create Dinner Party" />
+          <ButtonInput
+            type="submit"
+            bsStyle="success"
+            value="Create Dinner Party"
+          />
         </form>
         <InviteFriendForm invitePerson={this.invitePerson.bind(this)} />
       </div>

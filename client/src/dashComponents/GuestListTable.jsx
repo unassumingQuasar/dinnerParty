@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import GuestRow from './GuestRow.jsx';
 
 
-
-
 class GuestsTable extends React.Component {
  constructor(){
    super();

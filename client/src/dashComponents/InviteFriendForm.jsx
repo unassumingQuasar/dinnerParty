@@ -23,13 +23,9 @@ class InviteFriendForm extends React.Component {
 
   // handleSubmit is set as the callback passed through props; not sure if we need in in redux
   render() {
-    return <div>
-
-        <form onSubmit={(event) => this.handleSubmit(event, this.state)}>
-=======
     return (
       <div className="search-bar form-inline">
->>>>>>> Fix style errors
+      <form onSubmit={(event) => this.handleSubmit(event, this.state)}>
 
         <input id="inviteFriend"
           type="text"
