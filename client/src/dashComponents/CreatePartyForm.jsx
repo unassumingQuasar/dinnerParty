@@ -1,5 +1,6 @@
 import React from 'react';
 import ajaxPost from '../utils/ajaxPost.jsx';
+// import get from '../utils/get.js';
 import InviteFriendForm from './InviteFriendForm.jsx';
 
 import Input from 'react-bootstrap/lib/Input';
@@ -31,13 +32,6 @@ class CreatePartyForm extends React.Component {
     console.log(this.state).bind(this);
   }
 
-  invitePerson(person) {
-    let invited = this.state.inviteList;
-    invited.push(person);
-    this.setState({ inviteList: invited });
-    console.log(this.state.inviteList).bind(this);
-  }
-
   onChange(source, e) {
     let state = Object.assign({}, this.state);
     state[source] = e.target.value;
@@ -45,10 +39,17 @@ class CreatePartyForm extends React.Component {
     this.setState(state);
   }
 
+  invitePerson(person) {
+    let invited = this.state.inviteList;
+    invited.push(person);
+    this.setState({ inviteList: invited });
+    console.log(this.state.inviteList).bind(this);
+  }
+
   render() {
     return (
       <div>
-        <form onSubmit={(event) => this.handleSubmit(event, this.state)}>
+        <form onSubmit={(event) => this.handleFormSubmit(event, this.state)}>
           <Input
             id="eventName"
             type="text"
