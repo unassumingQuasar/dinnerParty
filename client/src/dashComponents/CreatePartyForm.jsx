@@ -1,5 +1,6 @@
 import React from 'react';
 import ajaxPost from '../utils/ajaxPost.jsx';
+import InviteFriendForm from './InviteFriendForm.jsx';
 
 import Input from 'react-bootstrap/lib/Input';
 import ButtonInput from 'react-bootstrap/lib/ButtonInput';
@@ -23,10 +24,18 @@ class CreatePartyForm extends React.Component {
     let url = formInput.url;
     let context = this;
 
-    ajaxPost(url, function (data, context) {
-      this.state = { stateAtribute: data };
-      this.setState({ stateAtribute: data });
-    }, context, formInput);
+  ajaxPost(url, function (data, context) {
+    this.state = { stateAtribute: data };
+    this.setState({ stateAtribute: data });
+  }, context, formInput);
+  console.log(this.state).bind(this);
+  }
+
+  invitePerson(person) {
+    var invited = this.state.inviteList;
+    invited.push(person);
+    this.setState({inviteList: invited});
+    console.log(this.state.inviteList).bind(this);
   }
 
 
@@ -92,6 +101,7 @@ class CreatePartyForm extends React.Component {
           />
           <ButtonInput type="submit" bsStyle="success" value="Create Dinner Party" />
         </form>
+        <InviteFriendForm invitePerson={this.invitePerson.bind(this)} />
       </div>
     );
   }
