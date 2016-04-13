@@ -4,17 +4,29 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var app = express();
 var port = 3000;
+var cors = require('cors');
 
 //PARSING
-app.use(bodyParser.urlencoded({ extended: false })); 
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //SERVE UP STATIC FILES
 app.use(express.static(path.join(__dirname + '/../client/src')));
 
+//CROSS ORIGINE REQUESTS
+app.use(cors());
+
+var whitelist = ['http://localhost:8080/'];
+var corsOptions = {
+  origin: function(origin, callback){
+    var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+    callback(null, originIsWhitelisted);
+  }
+};
+
 //GOOGLE AUTHENTICATION
 require('./routes/config.js')(app, express);
-//TODO: further modularize code for routing use below line: 
+//TODO: further modularize code for routing use below line:
 // require('./routes/PartyRouter.js')(app, express);
 
 //ROUTING

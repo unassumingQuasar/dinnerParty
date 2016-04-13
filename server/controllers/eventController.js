@@ -45,18 +45,18 @@ exports.getAllEvents = function(req, res){
 
 
 
-  db.User.findOne(req.body)
-    .then(function(user){
-      user.getEvents().then(function(events){
-        var eventAttributes=[];
-        for(var i = 0; events.length > i; i++){
-          // if(events[i].UserEvent.status === 'invited'){
-            eventAttributes.push([events[i].id,events[i].UserEvent.status]);
-          // }
-
-        }
-      });
-    });
+  // db.User.findOne(req.body)
+  //   .then(function(user){
+  //     user.getEvents().then(function(events){
+  //       var eventAttributes=[];
+  //       for(var i = 0; events.length > i; i++){
+  //         // if(events[i].UserEvent.status === 'invited'){
+  //           eventAttributes.push([events[i].id,events[i].UserEvent.status]);
+  //         // }
+  //
+  //       }
+  //     });
+  //   });
 };
 
 //get one event
@@ -85,19 +85,19 @@ exports.getAllGuests = function(req, res){
 
 res.send(GuestListData);
 // get all guests for specific event
-  db.Event.findOne(req.body)
-    .then(function(event){
-      event.getUsers().then(function(users){
-        var userAttributes=[];
-        for(var i = 0; users.length > i; i++) {
-          if(users[i].UserEvent.status === 'invited'){
-            userAttributes.push(users[i].id);
-          }
-          //do something with userAttributes
-          // console.log(userAttributes);
-        }
-      });
-    });
+  // db.Event.findOne(req.body)
+  //   .then(function(event){
+  //     event.getUsers().then(function(users){
+  //       var userAttributes=[];
+  //       for(var i = 0; users.length > i; i++) {
+  //         if(users[i].UserEvent.status === 'invited'){
+  //           userAttributes.push(users[i].id);
+  //         }
+  //         //do something with userAttributes
+  //         // console.log(userAttributes);
+  //       }
+  //     });
+  //   });
 
 
 };
