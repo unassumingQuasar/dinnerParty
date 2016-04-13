@@ -2,29 +2,29 @@ class InviteFriendForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      inviteList: []
+      inviteList: ''
     };
   }
-  handleSubmit(event, formInput) {
+  handleSubmit(event, person) {
     event.preventDefault();
-    console.log(formInput);
+    this.props.invitePerson(person.inviteList)
   }
 
   handleInviteListChange(event) {
     event.preventDefault();
-    var friend = event.target.value;
-    var invited = [];
-    invited.push(friend);
-    this.setState({inviteList: invited});
+    this.setState({inviteList: event.target.value});
   }
 
   //handleSubmit is set as the callback passed through props; not sure if we need in in redux
   render() {
-    return <div className="search-bar form-inline">
+    return <div>
 
-        <form onSubmit={(event) => this.props.handleSubmit(event, this.state)}>
+        <form onSubmit={(event) => this.handleSubmit(event, this.state)}>
+
         <input id="inviteFriend"
           type="text"
+
+
           onChange={this.handleInviteListChange.bind(this)}
           value={this.state.inviteList}
           placeholder="Invite friends!"
