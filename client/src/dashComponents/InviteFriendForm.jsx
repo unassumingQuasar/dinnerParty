@@ -1,3 +1,5 @@
+import React from 'react';
+
 class InviteFriendForm extends React.Component {
   constructor() {
     super();
@@ -13,13 +15,21 @@ class InviteFriendForm extends React.Component {
   handleInviteListChange(event) {
     event.preventDefault();
     this.setState({inviteList: event.target.value});
+    let friend = event.target.value;
+    let invited = [];
+    invited.push(friend);
+    this.setState({ inviteList: invited });
   }
 
-  //handleSubmit is set as the callback passed through props; not sure if we need in in redux
+  // handleSubmit is set as the callback passed through props; not sure if we need in in redux
   render() {
     return <div>
 
         <form onSubmit={(event) => this.handleSubmit(event, this.state)}>
+=======
+    return (
+      <div className="search-bar form-inline">
+>>>>>>> Fix style errors
 
         <input id="inviteFriend"
           type="text"
@@ -36,6 +46,7 @@ class InviteFriendForm extends React.Component {
 
       </form>
     </div>
+    );
   }
 }
 
