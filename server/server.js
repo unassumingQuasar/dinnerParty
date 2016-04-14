@@ -17,17 +17,6 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname + '/../client/')));
 
 
-//CROSS ORIGIN REQUESTS
-// app.use(cors());
-
-var whitelist = ['http://localhost:8080/'];
-var corsOptions = {
-  origin: function(origin, callback){
-    var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
-    callback(null, originIsWhitelisted);
-  }
-};
-
 //GOOGLE AUTHENTICATION
 require('./routes/config.js')(app, express);
 //TODO: further modularize code for routing use below line:
