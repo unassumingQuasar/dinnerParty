@@ -11,7 +11,7 @@ function dash() {
       <h1>Dash</h1>
       <h3>Make a Party!</h3>
       <CreatePartyForm />
-      <h3>Party Details</h3>
+      <h3>Your Parties!</h3>
       <PartyDetailsTable />
       <h3>Guest Details</h3>
       <GuestsTable />
