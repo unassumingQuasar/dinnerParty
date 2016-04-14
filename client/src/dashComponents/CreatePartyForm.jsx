@@ -92,7 +92,6 @@ class CreatePartyForm extends React.Component {
             value="Create Dinner Party"
           />
         </form>
-        <InviteFriendForm invitePerson={this.invitePerson.bind(this)} />
       </div>
     );
   }
