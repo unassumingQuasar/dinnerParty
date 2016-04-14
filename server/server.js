@@ -8,7 +8,6 @@ var app = express();
 var port = 3000;
 
 
-
 //PARSING
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
