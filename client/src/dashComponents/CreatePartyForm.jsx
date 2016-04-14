@@ -3,8 +3,8 @@ import ajaxPost from '../utils/ajaxPost.jsx';
 // import get from '../utils/get.js';
 import InviteFriendForm from './InviteFriendForm.jsx';
 
-import Input from 'react-bootstrap/lib/Input';
-import ButtonInput from 'react-bootstrap/lib/ButtonInput';
+import TextField from 'material-ui/lib/text-field';
+import RaisedButton from 'material-ui/lib/raised-button';
 
 class CreatePartyForm extends React.Component {
   constructor() {
@@ -50,46 +50,45 @@ class CreatePartyForm extends React.Component {
     return (
       <div>
         <form onSubmit={(event) => this.handleFormSubmit(event, this.state)}>
-          <Input
+          <TextField
             id="eventName"
             type="text"
             placeholder="Event Name"
-            value={this.state.eventName}
+            floatingLabelText={this.state.eventName}
             onChange={this.onChange.bind(this, 'eventName')}
           />
-          <Input
+          <TextField
             id="location"
             type="text"
             placeholder="Location"
-            value={this.state.location}
+            floatingLabelText={this.state.location}
             onChange={this.onChange.bind(this, 'location')}
           />
-          <Input
+          <TextField
             id="time"
             type="text"
             placeholder="Time"
-            value={this.state.time}
+            floatingLabelText={this.state.time}
             onChange={this.onChange.bind(this, 'time')}
           />
-          <Input
+          <TextField
             id="cost"
             type="text"
             placeholder="Cost"
-            value={this.state.cost}
+            floatingLabelText={this.state.cost}
             onChange={this.onChange.bind(this, 'cost')}
           />
-          <Input
+          <TextField
             id="description"
             type="textarea"
             label="Describe the party!"
             placeholder="Description"
-            value={this.state.description}
+            floatingLabelText={this.state.description}
             onChange={this.onChange.bind(this, 'description')}
           />
-          <ButtonInput
+          <RaisedButton
             type="submit"
-            bsStyle="success"
-            value="Create Dinner Party"
+            label="Create Dinner Party"
           />
         </form>
       </div>
