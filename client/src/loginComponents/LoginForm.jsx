@@ -6,7 +6,6 @@ class LoginForm extends React.Component {
   constructor() {
     super();
   }
-}
 
 
   render() {

@@ -26,6 +26,7 @@ class CreatePartyForm extends React.Component {
     let context = this;
 
     ajaxPost(url, function(data, context) {
+      console.log('FORM INPUT', formInput);
       this.state = { stateAtribute: data };
       this.setState({ stateAtribute: data });
     }, context, formInput);
@@ -53,37 +54,31 @@ class CreatePartyForm extends React.Component {
           <TextField
             id="eventName"
             type="text"
-            placeholder="Event Name"
-            floatingLabelText={this.state.eventName}
+            floatingLabelText= 'Event Name'
             onChange={this.onChange.bind(this, 'eventName')}
           />
           <TextField
             id="location"
             type="text"
-            placeholder="Location"
-            floatingLabelText={this.state.location}
+            floatingLabelText= 'Location'
             onChange={this.onChange.bind(this, 'location')}
           />
           <TextField
             id="time"
             type="text"
-            placeholder="Time"
-            floatingLabelText={this.state.time}
+            floatingLabelText= 'Time'
             onChange={this.onChange.bind(this, 'time')}
           />
           <TextField
             id="cost"
             type="text"
-            placeholder="Cost"
-            floatingLabelText={this.state.cost}
+            floatingLabelText= 'Cost'
             onChange={this.onChange.bind(this, 'cost')}
           />
           <TextField
             id="description"
             type="textarea"
-            label="Describe the party!"
-            placeholder="Description"
-            floatingLabelText={this.state.description}
+            floatingLabelText= 'Description'
             onChange={this.onChange.bind(this, 'description')}
           />
           <RaisedButton
