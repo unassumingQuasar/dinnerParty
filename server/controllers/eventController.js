@@ -1,119 +1,140 @@
 var Sequelize = require('sequelize');
 var db = require('../config/init.js');
 
-
 //make a new event by a specific host
-exports.createEvent = function(req, res){
+exports.createEvent = function(req, res, next){
+  db.Event.create({name: req.body.eventName, location: req.body.location, description: req.body.description, date: req.body.date, cost: req.body.cost })
+    .then(function(event){
+      //add event to host
+      db.User.findOne({googleId: req.user.googleId})
+        .then(function(user){
+          user.addEvent(event)
+            .then(function(user){
+              //send back  the event we just created so that it can be displayed in the user's event feed
+              res.send(event);
+            })
+        })
+    });
+  };
 
-  db.Event.create(req.body).then(function(event){
-      res.send(event);
+exports.updateEvent = function(req, res, next){
+  //get the users event first
+  //then find the matching event so that 
+  //users who named the events the same name 
+  //only update their own events
+  db.User.findOne({googleId: req.user.googleId})    
+    .then(function(user){
+      
+      user.getEvents().then(function(events){
+        for(var i = 0; i < events.length; i++){
+          if(event.name === req.body.eventName){
+            
+            db.Event.findOne({ id: event.id })
+              .then(function(event){   
+                //req.body needs to be in format {propertyToBeUpdated: updatedValue}
+                event.updateAttributes(req.body)
+                  .then(function(event){
+                    //send back updated event so that it can be updated in user's event feed.
+                    res.json(event);
+                  })     
+    
+              })
+            }
+          }
+      });
+    })
+};
+
+
+
+//and get associated guestlist for each event and send back on each event object
+exports.getAllEvents = function(req, res, next){
+
+  var allEvents = [];
+  db.User.findOne({googleId: req.user.googleId})
+    .then(function(user){   
+      user.getEvents().then(function(events){
+        console.log('EVENTS', events);
+        for(var i = 0; i < events.length; i++) {
+          allEvents[i] = events[i];
+          allEvents[i].guestlist = [];
+          AllGuests(req, events[i].name, function(users){
+            allEvents[i].guestlist = users;
+            next();
+          })
+        }
+        res.json(allEvents);
+      });
     });
 
 };
 
 
 
-//get events for users dashboard
-exports.getAllEvents = function(req, res){
-  console.log('you hit events')
-
-  var PartyDetailsData = [
-   {eventName: 'name 1',
-    location: 'location 1',
-    time: '9am',
-    cost: '$5',
-    description: 'so much fun so much fun so much fun so much',
-    guestList: ['mike', 'steve'],
-  },
-
-  {eventName: 'name 2',
-   location: 'location 2',
-   time: '7am',
-   cost: '$10',
-   description: 'so much fun so much fun so much fun so much fun so much fun so much',
-   guestList: ['roy'],
-  },
-
-  {eventName: 'name 3',
-  location: 'location 3',
-  time: '7pm',
-  cost: '$3',
-  description: 'so much fun so much fun so much fun so much fun so much fun',
-  guestList: [],
-  }
-  ];
-
-  res.send(PartyDetailsData);
-
-
-
-
-  // db.User.findOne(req.body)
-  //   .then(function(user){
-  //     user.getEvents().then(function(events){
-  //       var eventAttributes=[];
-  //       for(var i = 0; events.length > i; i++){
-  //         // if(events[i].UserEvent.status === 'invited'){
-  //           eventAttributes.push([events[i].id,events[i].UserEvent.status]);
-  //         // }
-  //
-  //       }
-  //     });
-  //   });
-};
-
-//get one event
-exports.getOneEvent = function(req, res){
-
-
-}
-
-
-//requests to join tables
-exports.addGuest = function(req, res, next){
- //add event to guest/guest to event in join table
- // console.log('ADDGUEST NEXT', next);
- // addGuest(req.body.event, req.body.user, next);
-
-}
-
 
 exports.getAllGuests = function(req, res){
-  console.log('get guest list')
-  var GuestListData = [
-   {name: 'santaClause'},
-   {name: 'jane'},
-   {name: 'Lizzie'}
-  ];
 
-res.send(GuestListData);
 // get all guests for specific event
-  // db.Event.findOne(req.body)
-  //   .then(function(event){
-  //     event.getUsers().then(function(users){
-  //       var userAttributes=[];
-  //       for(var i = 0; users.length > i; i++) {
-  //         if(users[i].UserEvent.status === 'invited'){
-  //           userAttributes.push(users[i].id);
-  //         }
-  //         //do something with userAttributes
-  //         // console.log(userAttributes);
-  //       }
-  //     });
-  //   });
+//get all users events first then find in the db 
+//the event that matches the specific event searched for
+//then get the users on that event
+// to allow users to be able to make events the same name as other users
 
+  db.User.findOne({googleId: req.user.googleId})
+    .then(function(user){
+      if(!event){
+        return console.log('there is no user logged in!')
+      }
+      user.getEvents().then(function(events){
+        for(var i = 0; i < events.length; i++){
+          if(events[i].name === req.eventName){
+            db.Event.findOne({id: events[i].id})
+              .then(function(event){
+                event.getUsers().then(function(users){
+                  res.json(users);
+                })
+              })
+          }
+        }
+      })
+  });
 
 };
 
-var addGuest = function(event, guest, next){
- // console.log('HELPER NEXT', event);
- // console.log(event);
- // db.User.findOne({name: guest}).then(function(guest){
- //   db.Event.findOne({name: event.name})
- //   .then(function(event){
- //     console.log('EVENT', event);
- //     event.addUser(guest);
- //     next();
- //   });
- // });
+
+
+exports.addGuest = function(req, res, next){
+ //refractor to make sure that we are getting the users event
+ // not some other user's event with the same name like (21st bday);
+ db.User.findOne({name: req.body.guestName}).then(function(guest){
+   db.Event.findOne({name: req.body.event})
+   .then(function(event){
+     console.log('EVENT', event);
+     event.addUser(guest);
+     next();
+   });
+ });
 };
+
+
+var AllGuests = function(req, eventName, cb) {
+  db.User.findOne({googleId: req.user.googleId})
+    .then(function(user){
+      if(!event){
+        return console.log('there is no user logged in!')
+      }
+      user.getEvents().then(function(events){
+        for(var i = 0; i < events.length; i++){
+          if(events[i].name === eventName){
+            db.Event.findOne({id: events[i].id})
+              .then(function(event){
+                event.getUsers().then(function(users){
+                  cb(users);
+                })
+              })
+          }
+        }
+      })
+  });
+}
+
