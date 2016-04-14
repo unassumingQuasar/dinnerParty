@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //SERVE UP STATIC FILES
-app.use(express.static(path.join(__dirname + '/../client/src')));
+app.use(express.static(path.join(__dirname + '/../client/')));
 
 //GOOGLE AUTHENTICATION
 require('./routes/config.js')(app, express);
