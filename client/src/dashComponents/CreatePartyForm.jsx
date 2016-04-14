@@ -2,6 +2,7 @@ import React from 'react';
 import ajaxPost from '../utils/ajaxPost.jsx';
 // import get from '../utils/get.js';
 import InviteFriendForm from './InviteFriendForm.jsx';
+import PhotoUpload from './formComponents/PhotoUpload.jsx';
 
 import TextField from 'material-ui/lib/text-field';
 import RaisedButton from 'material-ui/lib/raised-button';
@@ -17,6 +18,7 @@ class CreatePartyForm extends React.Component {
       description: '',
       inviteList: [],
       url: 'http://localhost:3000/event',
+      picture: null,
     };
   }
 
@@ -31,6 +33,12 @@ class CreatePartyForm extends React.Component {
       this.setState({ stateAtribute: data });
     }, context, formInput);
     console.log(this.state).bind(this);
+  }
+
+  addPicture(picture, callback) {
+    this.setState({
+      picture: picture,
+    });
   }
 
   onChange(source, e) {
@@ -80,6 +88,9 @@ class CreatePartyForm extends React.Component {
             type="textarea"
             floatingLabelText= 'Description'
             onChange={this.onChange.bind(this, 'description')}
+          />
+          <PhotoUpload
+            addPicture={this.addPicture.bind(this)}
           />
           <RaisedButton
             type="submit"
