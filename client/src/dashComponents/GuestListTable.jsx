@@ -17,7 +17,7 @@ class GuestsTable extends React.Component {
  // }
 
  componentWillMount(){
-   this.loadCommentsFromServer('http://localhost:3000/guestlist', (data) => { this.setState({GuestListData: data}); });
+   // this.loadCommentsFromServer('http://localhost:3000/guestlist', (data) => { this.setState({GuestListData: data}); });
  };
 
  loadCommentsFromServer(url, stateKey) {

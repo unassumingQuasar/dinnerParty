@@ -35,7 +35,7 @@ class PartyDetailsTable extends React.Component {
     });
   }
 
-        // <PartyRow key={party.id} party={party} />
+
 
   render() {
     return (
