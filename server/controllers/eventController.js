@@ -18,25 +18,28 @@ exports.getAllEvents = function(req, res){
   console.log('you hit events')
 
   var PartyDetailsData = [
-   {eventName: 'yo mama',
-    location: 'your house',
+   {eventName: 'name 1',
+    location: 'location 1',
     time: '9am',
     cost: '$5',
-    description: 'so much fun so much fun so much fun so much'
+    description: 'so much fun so much fun so much fun so much',
+    guestList: ['mike', 'steve'],
   },
 
-  {eventName: 'hi',
-   location: 'my house',
+  {eventName: 'name 2',
+   location: 'location 2',
    time: '7am',
    cost: '$10',
-   description: 'so much fun so much fun so much fun so much fun so much fun so much'
+   description: 'so much fun so much fun so much fun so much fun so much fun so much',
+   guestList: ['roy'],
   },
 
-  {eventName: 'greatThingsHappening',
-  location: 'the park',
+  {eventName: 'name 3',
+  location: 'location 3',
   time: '7pm',
   cost: '$3',
-  description: 'so much fun so much fun so much fun so much fun so much fun'
+  description: 'so much fun so much fun so much fun so much fun so much fun',
+  guestList: [],
   }
   ];
 
