@@ -3,7 +3,6 @@ var db = require('../config/init.js');
 
 //make a new event by a specific host
 exports.createEvent = function(req, res, next){
-  console.log('EVENTTTTINGGGGGGG LOOK AT ME', req.body);
   db.Event.create({name: req.body.eventName, location: req.body.location, description: req.body.description, date: req.body.date, cost: req.body.cost })
     .then(function(event){
       //add event to host
