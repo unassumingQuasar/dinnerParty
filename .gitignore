@@ -41,3 +41,10 @@ bower_components/
 
 .DS_Store
 src/.DS_Store
+
+client/src/test.js
+client/*.woff2
+client/*.svg
+client/*.ttf
+client/*.eot
+client/*.woff

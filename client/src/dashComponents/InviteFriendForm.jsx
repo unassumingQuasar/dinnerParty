@@ -1,41 +1,47 @@
+import React from 'react';
+import ButtonInput from 'react-bootstrap/lib/ButtonInput';
+import Input from 'react-bootstrap/lib/Input';
+
+
 class InviteFriendForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      inviteList: ''
+      inviteList: '',
     };
   }
   handleSubmit(event, person) {
     event.preventDefault();
-    this.props.invitePerson(person.inviteList)
+    this.props.invitePerson(person.inviteList);
   }
 
   handleInviteListChange(event) {
     event.preventDefault();
-    this.setState({inviteList: event.target.value});
+    this.setState({ inviteList: event.target.value });
+    let friend = event.target.value;
+    let invited = [];
+    invited.push(friend);
+    this.setState({ inviteList: invited });
   }
 
-  //handleSubmit is set as the callback passed through props; not sure if we need in in redux
   render() {
-    return <div>
-
-        <form onSubmit={(event) => this.handleSubmit(event, this.state)}>
-
-        <input id="inviteFriend"
+    return (
+      <div className="search-bar form-inline">
+      <form onSubmit={(event) => this.handleSubmit(event, this.state)}>
+        <Input
+          id="inviteFriend"
           type="text"
-
-
           onChange={this.handleInviteListChange.bind(this)}
           value={this.state.inviteList}
           placeholder="Invite friends!"
         />
-
-        <button type="submit">
-          Add a Friend
-        </button>
-
+        <ButtonInput
+          type="submit"
+          value="Add a friend"
+        />
       </form>
     </div>
+    );
   }
 }
 

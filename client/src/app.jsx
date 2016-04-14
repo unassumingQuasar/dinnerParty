@@ -8,6 +8,7 @@ import about from './views/about.jsx';
 
 import HeaderNavigation from './shared/HeaderNavigation.jsx';
 import 'bootstrap/less/bootstrap.less';
+// see this on adding inline css - https://github.com/gajus/react-css-modules
 import 'bootstrap/dist/css/bootstrap.css';
 
 const App = () => {
@@ -23,7 +24,6 @@ const App = () => {
 
 ReactDOM.render(<div>
                   <HeaderNavigation />
-                  <br /><br />
                   <App />
                 </div>,
   document.getElementById('app'));

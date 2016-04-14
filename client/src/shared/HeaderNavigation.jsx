@@ -1,15 +1,8 @@
 import React from 'react';
+import AppBar from 'material-ui/lib/app-bar';
 
-import Navbar from 'react-bootstrap/lib/Navbar';
-import Nav from 'react-bootstrap/lib/Nav';
+const AppBarExampleIcon = () => (
+  <AppBar title="Dinner Party!" />
+);
 
-function HeaderNavigation() {
-  let brand = <a href="#">Dinner Party!</a>;
-  return (
-    <Navbar brand={brand} fixedTop inverse toggleNavKey={0}>
-      <Nav right eventkey={0} />
-    </Navbar>
-  );
-}
-
-export default HeaderNavigation;
+export default AppBarExampleIcon;
