@@ -1,6 +1,6 @@
 import React from 'react';
 import ButtonInput from 'react-bootstrap/lib/ButtonInput';
-import Input from 'react-bootstrap/lib/Input';
+import TextField from 'material-ui/lib/text-field';
 
 class LoginForm extends React.Component {
   constructor() {
@@ -25,15 +25,15 @@ class LoginForm extends React.Component {
     return (
       <div>
         <form onSubmit={(event) => this.props.handleSubmit(event, this.state)}>
-          <Input id="userName"
+          <TextField id="userName"
             onChange={this.handleUserNameChange.bind(this)}
             type="text" value={this.state.userName}
-            placeholder="What's your name?"
+            floatingLabelText="What's your name?"
           />
-          <Input id="password"
-            type="text" onChange={this.handlePasswordChange.bind(this)}
+          <TextField id="password"
+            type="password" onChange={this.handlePasswordChange.bind(this)}
             value={this.state.password}
-            placeholder="Enter a password"
+            floatingLabelText="Enter a password"
           />
           <ButtonInput bsStyle="success" type="submit" value="Login to DinnerParty" />
         </form>
