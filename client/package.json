@@ -4,7 +4,8 @@
   "description": "client side dependencies",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "watch": "webpack --watch"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +22,7 @@
     "file-loader": "^0.8.5",
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
+    "material-ui": "^0.15.0-alpha.2",
     "react": "^0.14.8",
     "react-bootstrap": "^0.28.5",
     "react-dom": "^0.14.8",
