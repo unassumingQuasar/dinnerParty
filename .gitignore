@@ -1,5 +1,8 @@
 ### node etc ###
 
+#client bundle
+client/bundle.js
+
 # Logs
 logs
 *.log
