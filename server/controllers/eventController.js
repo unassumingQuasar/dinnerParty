@@ -88,34 +88,34 @@ exports.getAllEvents = function(req, res, next){
 
 
 
-// exports.getAllGuests = function(req, res){
+exports.getAllGuests = function(req, res){
 
-// // get all guests for specific event
-// //get all users events first then find in the db 
-// //the event that matches the specific event searched for
-// //then get the users on that event
-// // to allow users to be able to make events the same name as other users
+// get all guests for specific event
+//get all users events first then find in the db 
+//the event that matches the specific event searched for
+//then get the users on that event
+// to allow users to be able to make events the same name as other users
 
-//   db.User.findOne({googleId: req.user.googleId})
-//     .then(function(user){
-//       if(!user){
-//         return console.log('there is no user logged in!')
-//       }
-//       user.getEvents().then(function(events){
-//         for(var i = 0; i < events.length; i++){
-//           if(events[i].name === req.eventName){
-//             db.Event.findOne({id: events[i].id})
-//               .then(function(event){
-//                 event.getUsers().then(function(users){
-//                   res.json(users);
-//                 })
-//               })
-//           }
-//         }
-//       })
-//   });
+  db.User.findOne({googleId: req.user.googleId})
+    .then(function(user){
+      if(!user){
+        return console.log('there is no user logged in!')
+      }
+      user.getEvents().then(function(events){
+        for(var i = 0; i < events.length; i++){
+          if(events[i].name === req.eventName){
+            db.Event.findOne({id: events[i].id})
+              .then(function(event){
+                event.getUsers().then(function(users){
+                  res.json(users);
+                })
+              })
+          }
+        }
+      })
+  });
 
-// };
+};
 
 
 
