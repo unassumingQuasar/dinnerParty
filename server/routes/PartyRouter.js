@@ -24,7 +24,8 @@ partyRouter.route('/addguest')
 partyRouter.route('/updateEvent')
   .post(eventController.updateEvent);
 
-
+partyRouter.route('/usernames')
+  .get(eventController.userNames);
 
 
 module.exports = partyRouter;
