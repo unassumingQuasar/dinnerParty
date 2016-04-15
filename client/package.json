@@ -19,7 +19,7 @@
     "react-dropzone": "^3.4.0",
     "react-redux": "^4.4.1",
     "react-router": "^2.0.1",
-    "react-tap-event-plugin": "^1.0.0",
+    "react-tap-event-plugin": "^1.0.0"
   },
   "devDependencies": {
     "babel-plugin-react-require": "^2.1.0",
@@ -39,6 +39,6 @@
     "babelify": "^7.2.0",
     "webpack": "^1.12.15",
     "file-loader": "^0.8.5",
-    "webpack-dev-server": "^1.14.1",
+    "webpack-dev-server": "^1.14.1"
   }
 }
