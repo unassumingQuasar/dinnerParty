@@ -1,10 +1,10 @@
 var Sequelize = require('sequelize');
 var db = require('../config/init.js');
 var each = require('async-each');
-
+var _ = require('underscore');
 //make a new event by a specific host
 exports.createEvent = function(req, res, next){
-  db.Event.create({name: req.body.eventName, location: req.body.location, description: req.body.description, date: req.body.date, cost: req.body.cost })
+  db.Event.create({name: req.body.eventName, location: req.body.location, description: req.body.description, date: req.body.date, cost: req.body.cost, time: req.body.time, image: req.body.image })
     .then(function(event){
       //add event to host
       db.User.findOne({googleId: req.user.googleId})
@@ -12,38 +12,19 @@ exports.createEvent = function(req, res, next){
           user.addEvent(event)
             .then(function(user){
               //send back  the event we just created so that it can be displayed in the user's event feed
-              res.json(event.dataValues);
+              res.send(event.dataValues);
             })
         })
     });
   };
 
 exports.updateEvent = function(req, res, next){
-  //get the users event first
-  //then find the matching event so that 
-  //users who named the events the same name 
-  //only update their own events
-  db.User.findOne({googleId: req.user.googleId})    
-    .then(function(user){
-      
-      user.getEvents().then(function(events){
-        for(var i = 0; i < events.length; i++){
-          if(event.name === req.body.eventName){
-            
-            db.Event.findOne({ id: event.id })
-              .then(function(event){   
-                //req.body needs to be in format {propertyToBeUpdated: updatedValue}
-                event.updateAttributes(req.body)
-                  .then(function(event){
-                    //send back updated event so that it can be updated in user's event feed.
-                    res.json(event.dataValues);
-                  })     
-    
-              })
-            }
-          }
+  db.Event.findById(req.body.id).then(function(event){
+    event.update(req.body)
+      .then(function(newEvent){
+        res.send(newEvent.dataValues);
       });
-    })
+  });
 };
 
 
@@ -77,7 +58,7 @@ exports.getAllEvents = function(req, res, next){
 
           }
         }, function(){
-          res.json(allEvents);
+          res.send(allEvents);
         });
 
       });
@@ -107,7 +88,7 @@ exports.getAllGuests = function(req, res){
             db.Event.findOne({id: events[i].id})
               .then(function(event){
                 event.getUsers().then(function(users){
-                  res.json(users);
+                  res.send(users);
                 })
               })
           }
@@ -126,10 +107,21 @@ exports.addGuest = function(req, res){
    db.Event.findOne({name: req.body.event})
    .then(function(event){
      event.addUser(guest, function(){
-       res.json(guest.dataValues);
+       res.send(guest.dataValues);
      });
    });
  });
+};
+
+
+exports.userNames = function(req, res) {
+  db.User.findAll({
+    attributes:['name']
+  }).then(function(userNames){
+     res.send(_.map(userNames, function(user){
+      return user.dataValues.name;
+    }));
+  });
 };
 
 
