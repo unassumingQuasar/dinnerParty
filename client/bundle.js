@@ -25149,7 +25149,7 @@
 	      date: '',
 	      description: '',
 	      inviteList: [],
-	      url: 'http://104.236.165.244:3000/event',
+	      url: 'http://dinnersomewhere.com:3000/event',
 	      picture: null
 	    };
 	    return _this;
@@ -55888,7 +55888,7 @@
 	          null,
 	          _react2.default.createElement(
 	            'a',
-	            { href: 'http://104.236.165.244:3000/auth/google' },
+	            { href: 'http://dinnersomewhere.com:3000/auth/google' },
 	            'Login with Google'
 	          )
 	        )
