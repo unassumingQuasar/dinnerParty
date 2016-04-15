@@ -33,11 +33,15 @@ class AutoCompleteGuests extends React.Component {
 
   render() {
     return (
-      <AutoComplete
-        floatingLabelText="Add friends!"
-        filter={this.filter}
-        dataSource={this.state.dataSource}
-      />
+      <div>
+        <AutoComplete
+          floatingLabelText="Add Friend!"
+          filter={this.filter}
+          dataSource={this.state.dataSource}
+        />
+        <FlatButton label="Invite people!" backgroundColor="green" />
+      </div>
+
     );
   }
 }

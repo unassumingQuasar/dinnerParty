@@ -55,8 +55,6 @@ class PartyDetailsTable extends React.Component {
             </CardText>
             <CardActions>
               <AutoCompleteGuests />
-              <TextField floatingLabelText="Add friends here" />
-              <FlatButton label="Invite people!" backgroundColor="green" />
             </CardActions>
             <List>
               {party.guestlist.map(guest => (
