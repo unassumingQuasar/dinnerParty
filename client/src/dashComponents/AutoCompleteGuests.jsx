@@ -11,8 +11,7 @@ class AutoCompleteGuests extends React.Component {
     };
   }
 
-  // function that gets the dataSource
-  // GET /usernames
+
   componentWillMount() {
     this.buildDataSource('/usernames');
   }
@@ -22,15 +21,21 @@ class AutoCompleteGuests extends React.Component {
   buildDataSource(url) {
     get(url, (data) => {
       this.setState({
-        dataSource: data,
+        dataSource: data.data,
       });
     });
+  }
+
+  // case insensitive autocomplete filter
+  filter(searchText, key) {
+    return key.toLowerCase().includes(searchText.toLowerCase());
   }
 
   render() {
     return (
       <AutoComplete
-        hintText="Add friends!"
+        floatingLabelText="Add friends!"
+        filter={this.filter}
         dataSource={this.state.dataSource}
       />
     );

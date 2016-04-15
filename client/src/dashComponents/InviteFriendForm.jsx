@@ -1,6 +1,7 @@
 import React from 'react';
 import ButtonInput from 'react-bootstrap/lib/ButtonInput';
 import Input from 'react-bootstrap/lib/Input';
+import AutoCompleteGuests from './AutoCompleteGuests.jsx';
 
 
 class InviteFriendForm extends React.Component {
