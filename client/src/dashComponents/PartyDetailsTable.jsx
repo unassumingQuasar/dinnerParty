@@ -21,7 +21,7 @@ class PartyDetailsTable extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.state);
+    console.log('dataaa', this.state);
   }
   loadCommentsFromServer(url, stateKey) {
     console.log('ajax');
@@ -37,10 +37,13 @@ class PartyDetailsTable extends React.Component {
 
 
 
+
   render() {
+  {console.log('so stately', this.state.PartyDetailsData);}
+
     return (
       <div>
-        {this.state.PartyDetailsData.map(party => (
+        {this.state.PartyDetailsData.map((party) => (
           <Card>
             <CardHeader title={party.eventName} />
             <CardText>
@@ -54,8 +57,8 @@ class PartyDetailsTable extends React.Component {
               <FlatButton label="Invite people!" backgroundColor="green" />
             </CardActions>
             <List>
-              {party.guestList.map(guest => (
-                <ListItem primaryText={guest} />
+              {party.guestlist.map(guest => (
+                <ListItem primaryText={guest.name} />
               ))}
             </List>
           </Card>
