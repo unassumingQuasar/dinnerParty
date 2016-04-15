@@ -1,5 +1,11 @@
 {
   "name": "unassuming-quasars",
+  "engines": {
+    "node": "5.8.0"
+  },
+  "scripts": {
+    "start": "node server/server.js"
+  },
   "dependencies": {
     "async-each": "^1.0.0",
     "body-parser": "^1.15.0",
