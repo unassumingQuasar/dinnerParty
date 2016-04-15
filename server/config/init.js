@@ -11,6 +11,7 @@ var db = new Sequelize('dinner', null, null, {
 exports.User = db.define('users', {
  name: Sequelize.STRING,
  googleId: Sequelize.STRING,  
+ image: Sequelize.JSON
 });
 
 exports.Event = db.define('events', {
@@ -18,7 +19,9 @@ exports.Event = db.define('events', {
  description: Sequelize.STRING,
  location: Sequelize.STRING,
  date: Sequelize.DATE,
- cost: Sequelize.FLOAT
+ cost: Sequelize.FLOAT,
+ time: Sequelize.STRING,
+ image: Sequelize.JSON
 });
 
 exports.UserEvent = db.define('userevents', {
