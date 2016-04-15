@@ -18,7 +18,7 @@ exports.Event = db.define('events', {
  name: Sequelize.STRING,
  description: Sequelize.STRING,
  location: Sequelize.STRING,
- date: Sequelize.DATE,
+ date: Sequelize.STRING,
  cost: Sequelize.FLOAT,
  time: Sequelize.STRING,
  image: Sequelize.JSON
