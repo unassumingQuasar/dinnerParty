@@ -1,6 +1,6 @@
 var pg = require('pg');
 var Sequelize = require('sequelize');
-var db = new Sequelize('dinner', null, null, {
+var db = new Sequelize('dinner', 'postgres', null, {
  dialect: 'postgres',
  define: {
    underscored: false,
