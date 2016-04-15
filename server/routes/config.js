@@ -42,7 +42,7 @@ module.exports = function(app, express){
   passport.use(new GoogleStrategy({
       clientID:     google.GOOGLE_CLIENT_ID,
       clientSecret: google.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/googlecallback",
+      callbackURL: "http://104.236.165.244:3000/googlecallback",
       passReqToCallback   : true
     },
     function(request, accessToken, refreshToken, profile, done) {  
@@ -62,7 +62,7 @@ module.exports = function(app, express){
 
 
   app.get('/googlecallback', 
-    passport.authenticate('google', { successRedirect: 'http://localhost:3000/#/dash'} )
+    passport.authenticate('google', { successRedirect: 'http://104.236.165.244:3000/#/dash'} )
   );
 
 

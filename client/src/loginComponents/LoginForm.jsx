@@ -10,7 +10,7 @@ class LoginForm extends React.Component {
   render() {
     return (
       <div>
-        <button><a href="http://localhost:3000/auth/google">Login with Google</a></button>
+        <button><a href="http://104.236.165.244:3000/auth/google">Login with Google</a></button>
       </div>
     );
   }
