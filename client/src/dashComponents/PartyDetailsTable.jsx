@@ -7,6 +7,7 @@ import CardText from 'material-ui/lib/card/card-text';
 import TextField from 'material-ui/lib/text-field';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
+import AutoCompleteGuests from './AutoCompleteGuests.jsx';
 
 class PartyDetailsTable extends React.Component {
   constructor() {
@@ -53,6 +54,7 @@ class PartyDetailsTable extends React.Component {
               <p>Description: {party.description}</p>
             </CardText>
             <CardActions>
+              <AutoCompleteGuests />
               <TextField floatingLabelText="Add friends here" />
               <FlatButton label="Invite people!" backgroundColor="green" />
             </CardActions>

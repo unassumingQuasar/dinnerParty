@@ -4,7 +4,7 @@ import { Router, Route, Redirect, hashHistory } from 'react-router';
 
 import dash from './views/dash.jsx';
 import login from './views/login.jsx';
-import about from './views/about.jsx';
+import About from './views/about.jsx';
 
 import HeaderNavigation from './shared/HeaderNavigation.jsx';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -19,7 +19,7 @@ const App = () => {
   return (
     <Router history={ hashHistory }>
       <Route path="/dash" component={dash} />
-      <Route path="/about" component={about} />
+      <Route path="/about" component={About} />
       <Route path="/login" component={login} />
       <Redirect from="/" to="/login" />
     </Router>
