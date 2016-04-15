@@ -103,7 +103,7 @@ exports.getAllGuests = function(req, res){
 exports.addGuest = function(req, res){
 
  db.User.findOne({name: req.body.guestName}).then(function(guest){
-   db.Event.findById(req.body.eventId)
+   db.Event.findbyId(req.body.eventId)
    .then(function(event){
      event.addUser(guest, function(){
        res.send(guest.dataValues);
