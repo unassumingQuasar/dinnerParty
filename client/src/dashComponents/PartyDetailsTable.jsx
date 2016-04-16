@@ -14,32 +14,14 @@ class PartyDetailsTable extends React.Component {
   constructor() {
     super();
     this.state = {
-      PartyDetailsData: [],
     };
   }
 
-
-  componentWillMount() {
-    this.loadCommentsFromServer('http://localhost:3000/eventlist', (data) => { this.setState({ PartyDetailsData: data }); });
-  }
-
-  componentDidMount() {  }
-  loadCommentsFromServer(url, stateKey) {
-
-    $.ajax ({
-      url: url,
-      type: 'GET',
-      dataType: 'json',
-      success: stateKey,
-      error: (data) => { console.log('no dinner party for you!', data); },
-    });
-  }
-
   render() {
-    {console.log('stately state', this.state)}
+    {console.log('party detail props', this.props)}
     return (
       <div>
-        {this.state.PartyDetailsData.map((party) => (
+        {this.props.PartyDetailsData.map((party) => (
           <Card>
             <CardHeader title={party.eventName} />
             <CardText>

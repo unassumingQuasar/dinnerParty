@@ -1,5 +1,4 @@
 import React from 'react';
-import post from '../utils/post.js';
 import InviteFriendForm from './InviteFriendForm.jsx';
 import PhotoUpload from './formComponents/PhotoUpload.jsx';
 import DatePicker from 'material-ui/lib/date-picker/date-picker';

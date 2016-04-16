@@ -16,17 +16,14 @@ class dash extends React.Component {
 
 
   componentWillMount() {
-    this.getFromSever('http://localhost:3000/eventlist', (data) => { this.setState({ PartyDetailsData: data }); });
+    this.getFromSever('http://localhost:3000/eventlist', (data) => { this.setState({ PartyDetailsData: data.data }); });
+
   }
 
   componentDidMount() {  }
 
   getFromSever(url, callback) {
-    get(url, (data) => {
-      this.setState({
-        dataSource: data.data,
-      });
-    });
+    get(url, callback);
   }
 
   postToServer(url, postData, callback) {
@@ -45,7 +42,7 @@ class dash extends React.Component {
         <h3>Make a Party!</h3>
         <CreatePartyForm  getFromSever={this.getFromSever.bind(this)} postToServer={this.postToServer.bind(this)} />
         <h3>Your Parties!</h3>
-        <PartyDetailsTable state={this.state} />
+        <PartyDetailsTable PartyDetailsData={this.state.PartyDetailsData} />
         <h3>Guest Details</h3>
         <GuestsTable />
       </div>
