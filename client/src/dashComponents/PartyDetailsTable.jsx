@@ -1,4 +1,5 @@
 import React from 'react';
+import get from '../utils/get.js';
 import Card from 'material-ui/lib/card/card';
 import CardActions from 'material-ui/lib/card/card-actions';
 import CardHeader from 'material-ui/lib/card/card-header';
@@ -17,15 +18,13 @@ class PartyDetailsTable extends React.Component {
     };
   }
 
+
   componentWillMount() {
     this.loadCommentsFromServer('http://localhost:3000/eventlist', (data) => { this.setState({ PartyDetailsData: data }); });
   }
 
-  componentDidMount() {
-    console.log('dataaa', this.state);
-  }
+  componentDidMount() {  }
   loadCommentsFromServer(url, stateKey) {
-    console.log('ajax');
 
     $.ajax ({
       url: url,
@@ -36,12 +35,8 @@ class PartyDetailsTable extends React.Component {
     });
   }
 
-
-
-
   render() {
-  {console.log('so stately', this.state.PartyDetailsData);}
-
+    {console.log('stately state', this.state)}
     return (
       <div>
         {this.state.PartyDetailsData.map((party) => (
@@ -54,7 +49,7 @@ class PartyDetailsTable extends React.Component {
               <p>Description: {party.description}</p>
             </CardText>
             <CardActions>
-              <AutoCompleteGuests />
+              <AutoCompleteGuests id={party.id} />
             </CardActions>
             <List>
               {party.guestlist.map(guest => (

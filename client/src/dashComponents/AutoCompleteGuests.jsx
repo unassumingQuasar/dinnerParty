@@ -1,6 +1,8 @@
 import React from 'react';
 import AutoComplete from 'material-ui/lib/auto-complete';
 import get from '../utils/get.js';
+import post from '../utils/post.js';
+import FlatButton from 'material-ui/lib/flat-button';
 
 class AutoCompleteGuests extends React.Component {
 
@@ -8,6 +10,8 @@ class AutoCompleteGuests extends React.Component {
     super(props);
     this.state = {
       dataSource: [],
+      guestName: '',
+      event: this.props.id,
     };
   }
 
@@ -31,17 +35,25 @@ class AutoCompleteGuests extends React.Component {
     return key.toLowerCase().includes(searchText.toLowerCase());
   }
 
+  handleButton(formInput) {
+    post('http://localhost:3000/addguest', formInput);
+  }
+
+
   render() {
     return (
       <div>
         <AutoComplete
+          ref="auto"
           floatingLabelText="Add Friend!"
           filter={this.filter}
           dataSource={this.state.dataSource}
+          onUpdateInput={() => this.setState({ guestName: this.refs.auto.getValue() })}
         />
-        <FlatButton label="Invite people!" backgroundColor="green" />
+        <FlatButton onClick={() => this.handleButton(this.state)}
+          label="Invite people!" backgroundColor="green"
+        />
       </div>
-
     );
   }
 }

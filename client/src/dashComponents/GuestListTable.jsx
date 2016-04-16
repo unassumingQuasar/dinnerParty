@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import GuestRow from './GuestRow.jsx';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
@@ -32,15 +31,8 @@ class GuestsTable extends React.Component {
  };
 
  componentDidMount() {
-  console.log(this.state)
  }
 
- // refactor this in instead of table
- // <List>
- //   {this.state.GuestListData.map(guest => (
- //     <ListItem primaryText={guest} />
- //   ))}
- // </List>
 
  render() {
    return (

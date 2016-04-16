@@ -1,6 +1,5 @@
 import React from 'react';
-import ajaxPost from '../utils/ajaxPost.jsx';
-// import get from '../utils/get.js';
+import post from '../utils/post.js';
 import InviteFriendForm from './InviteFriendForm.jsx';
 import PhotoUpload from './formComponents/PhotoUpload.jsx';
 import DatePicker from 'material-ui/lib/date-picker/date-picker';
@@ -25,15 +24,9 @@ class CreatePartyForm extends React.Component {
 
   handleFormSubmit(event, formInput) {
     event.preventDefault();
-    let url = formInput.url;
-    let context = this;
-
-    ajaxPost(url, function(data, context) {
-      console.log('FORM INPUT', formInput);
-      this.state = { stateAtribute: data };
+    post(formInput.url, formInput, function(data) {
       this.setState({ stateAtribute: data });
-    }, context, formInput);
-    console.log(this.state).bind(this);
+    });
   }
 
   addPicture(picture, callback) {
@@ -45,7 +38,6 @@ class CreatePartyForm extends React.Component {
   onChange(source, e) {
     let state = Object.assign({}, this.state);
     state[source] = e.target.value;
-    console.log(state);
     this.setState(state);
   }
 
@@ -53,7 +45,6 @@ class CreatePartyForm extends React.Component {
     let invited = this.state.inviteList;
     invited.push(person);
     this.setState({ inviteList: invited });
-    console.log(this.state.inviteList).bind(this);
   }
 
   render() {
