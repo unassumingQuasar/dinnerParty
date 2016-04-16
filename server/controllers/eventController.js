@@ -45,7 +45,7 @@ exports.getAllEvents = function(req, res, next){
 
             event.getUsers().then(function(users){
               var data = event.dataValues;
-              currentEvent = {id: data.id, eventName: data.name, description: data.description, location: data.location, date: data.date, cost: data.cost, time: data.time, image: data.image, guestlist: []};
+              currentEvent = {id: data.id, eventName: data.name, description: data.description, location: data.location, date: data.date, cost: data.cost, guestlist: []};
               for(var i = 0; i < users.length; i++){
                 if(users[i].dataValues){
                   currentEvent.guestlist.push({name: users[i].dataValues.name, id: users[i].dataValues.id});
@@ -103,7 +103,7 @@ exports.getAllGuests = function(req, res){
 exports.addGuest = function(req, res){
 
  db.User.findOne({name: req.body.guestName}).then(function(guest){
-   db.Event.findbyId(req.body.eventId)
+   db.Event.findOne({name: req.body.event})
    .then(function(event){
      event.addUser(guest, function(){
        res.send(guest.dataValues);
