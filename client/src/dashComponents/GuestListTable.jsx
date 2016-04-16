@@ -8,40 +8,40 @@ class GuestsTable extends React.Component {
  constructor(){
    super();
    this.state = {
-    GuestListData: []
+    // GuestListData: []
   };
  }
 
  // getInitialState() {
  // }
 
- componentWillMount(){
-   // this.loadCommentsFromServer('http://localhost:3000/guestlist', (data) => { this.setState({GuestListData: data}); });
- };
-
- loadCommentsFromServer(url, stateKey) {
-
-   $.ajax ({
-     url: url,
-     type: 'GET',
-     dataType: 'json',
-     success: stateKey,
-     error: (data) => { console.log('no dinner party for you!', data); }
-   });
- };
-
- componentDidMount() {
- }
+ // componentWillMount(){
+ //   // this.loadCommentsFromServer('http://localhost:3000/guestlist', (data) => { this.setState({GuestListData: data}); });
+ // };
+ //
+ // loadCommentsFromServer(url, stateKey) {
+ //
+ //   $.ajax ({
+ //     url: url,
+ //     type: 'GET',
+ //     dataType: 'json',
+ //     success: stateKey,
+ //     error: (data) => { console.log('no dinner party for you!', data); }
+ //   });
+ // };
+ //
+ // componentDidMount() {
+ // }
 
 
  render() {
    return (
      <table>
-       <tbody>
+       {/*<tbody>
          {this.state.GuestListData.map(guest =>
            <GuestRow key={guest.id}guest={guest} />
          )}
-       </tbody>
+       </tbody>*/}
      </table>
    );
  }

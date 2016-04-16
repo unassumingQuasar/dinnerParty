@@ -24,7 +24,7 @@ class CreatePartyForm extends React.Component {
 
   handleFormSubmit(event, formInput) {
     event.preventDefault();
-    post(formInput.url, formInput, function(data) {
+    this.props.postToServer(formInput.url, formInput, function(data) {
       this.setState({ stateAtribute: data });
     });
   }
@@ -48,6 +48,7 @@ class CreatePartyForm extends React.Component {
   }
 
   render() {
+        {console.log('props', this.props)}
     return (
       <div>
         <form onSubmit={(event) => this.handleFormSubmit(event, this.state)}>

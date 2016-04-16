@@ -34,7 +34,7 @@ class InviteFriendForm extends React.Component {
           type="text"
           onChange={this.handleInviteListChange.bind(this)}
           value={this.state.inviteList}
-          placeholder="Invite friends!"
+          placeholder="Invite Cows!"
         />
         <ButtonInput
           type="submit"
