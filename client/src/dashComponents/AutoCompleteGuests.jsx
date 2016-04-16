@@ -1,7 +1,5 @@
 import React from 'react';
 import AutoComplete from 'material-ui/lib/auto-complete';
-import get from '../utils/get.js';
-import post from '../utils/post.js';
 import FlatButton from 'material-ui/lib/flat-button';
 
 class AutoCompleteGuests extends React.Component {
@@ -23,7 +21,7 @@ class AutoCompleteGuests extends React.Component {
   // first render, see:
   // http://javascript.tutorialhorizon.com/2014/09/13/execution-sequence-of-a-react-components-lifecycle-methods/
   buildDataSource(url) {
-    get(url, (data) => {
+    this.props.getFromSever(url, (data) => {
       this.setState({
         dataSource: data.data,
       });
@@ -36,11 +34,13 @@ class AutoCompleteGuests extends React.Component {
   }
 
   handleButton(formInput) {
-    post('http://localhost:3000/addguest', formInput);
+    this.props.postToServer('http://localhost:3000/addguest', formInput);
   }
 
 
   render() {
+    {console.log('auto detail props', this.props)}
+
     return (
       <div>
         <AutoComplete

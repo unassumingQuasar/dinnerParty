@@ -31,7 +31,7 @@ class PartyDetailsTable extends React.Component {
               <p>Description: {party.description}</p>
             </CardText>
             <CardActions>
-              <AutoCompleteGuests id={party.id} />
+              <AutoCompleteGuests id={party.id} getFromSever={this.props.getFromSever.bind(this)} postToServer={this.props.postToServer.bind(this)} />
             </CardActions>
             <List>
               {party.guestlist.map(guest => (
