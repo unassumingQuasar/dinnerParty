@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var cors = require('cors');
 var app = express();
-var port = 3000;
+var port = process.env.PORT || 3000;
 
 
 //PARSING
@@ -30,5 +30,5 @@ app.listen( port, function(err){
   if(err) {
     return console.log('error listening on port 3000', err);
   }
-  console.log('App is listening on port 3000!');
+  console.log('App is listening on port '+port);
 });
