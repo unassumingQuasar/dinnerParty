@@ -18,7 +18,7 @@ class PartyDetailsTable extends React.Component {
   }
 
   componentWillMount() {
-    this.loadCommentsFromServer('http://localhost:3000/eventlist', (data) => { this.setState({ PartyDetailsData: data }); });
+    this.loadCommentsFromServer('/eventlist', (data) => { this.setState({ PartyDetailsData: data }); });
   }
 
   componentDidMount() {
