@@ -1,3 +1,5 @@
+import React from 'react';
+
 function PartyRow(props) {
   return (
     <tr>

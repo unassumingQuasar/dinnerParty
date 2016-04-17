@@ -35,20 +35,20 @@ exports.getAllEvents = function(req, res, next){
 
   var allEvents = [];
   db.User.findOne({googleId: req.user.googleId})
-    .then(function(user){   
+    .then(function(user){
       user.getEvents().then(function(events){
 
 
         each(events, function(event, next){
-          
+
           if(event.dataValues){
-            
+
             event.getUsers().then(function(users){
               var data = event.dataValues;
-              currentEvent = {id: data.id, eventName: data.name, description: data.description, location: data.location, date: data.date, cost: data.cost, guestlist: []};
+              currentEvent = {id: data.id, eventName: data.name, description: data.description, location: data.location, date: data.date, cost: data.cost, time: data.time, image: data.image, guestlist: []};
               for(var i = 0; i < users.length; i++){
                 if(users[i].dataValues){
-                  currentEvent.guestlist.push({name: users[i].dataValues.name, id: users[i].dataValues.id});      
+                  currentEvent.guestlist.push({name: users[i].dataValues.name, id: users[i].dataValues.id});
                 }
               }
 
@@ -72,7 +72,7 @@ exports.getAllEvents = function(req, res, next){
 exports.getAllGuests = function(req, res){
 
 // get all guests for specific event
-//get all users events first then find in the db 
+//get all users events first then find in the db
 //the event that matches the specific event searched for
 //then get the users on that event
 // to allow users to be able to make events the same name as other users
@@ -101,10 +101,13 @@ exports.getAllGuests = function(req, res){
 
 
 exports.addGuest = function(req, res){
- //refractor to make sure that we are getting the users event
+  console.log('guest', req.body.guestName)
+  console.log('event', req.body.event)
+
+ // refractor to make sure that we are getting the users event
  // not some other user's event with the same name like (21st bday);
  db.User.findOne({name: req.body.guestName}).then(function(guest){
-   db.Event.findOne({name: req.body.event})
+   db.Event.findById(req.body.event)
    .then(function(event){
      event.addUser(guest, function(){
        res.send(guest.dataValues);
@@ -123,6 +126,3 @@ exports.userNames = function(req, res) {
     }));
   });
 };
-
-
-
