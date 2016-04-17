@@ -21,8 +21,17 @@ class Dash extends React.Component {
   }
 
   postToServer(url, postData, callback) {
-    post(url, postData, callback);
+    post(url, postData);
+    var comments = this.state.PartyDetailsData;
+    postData.id = Date.now();
+    var newComments = comments.concat([postData]);
+    this.setState({PartyDetailsData: newComments}).bind(this);
   }
+
+
+
+
+
 
   render() {
     {console.log('dash state', this.state);}
