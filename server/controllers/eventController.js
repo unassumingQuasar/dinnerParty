@@ -101,10 +101,12 @@ exports.getAllGuests = function(req, res){
 
 
 exports.addGuest = function(req, res){
-
- db.User.findOne({name: req.body.guestName}).then(function(guest){
+console.log(req.body.guestName);
+ db.User.findOne({where: {name: req.body.guestName}}).then(function(guest){
+  console.log(guest);
    db.Event.findById(req.body.eventId)
    .then(function(event){
+    console.log(event);
      event.addUser(guest, function(){
        res.send(guest.dataValues);
      });

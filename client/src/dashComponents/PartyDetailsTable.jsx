@@ -29,6 +29,7 @@ class PartyDetailsTable extends React.Component {
             <CardActions>
               <AutoCompleteGuests getFromSever={this.props.getFromSever.bind(this)}
                 postToServer={this.props.postToServer.bind(this)}
+                id={party.id}
               />
             </CardActions>
             <List>
