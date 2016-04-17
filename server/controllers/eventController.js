@@ -45,7 +45,7 @@ exports.getAllEvents = function(req, res, next){
 
             event.getUsers().then(function(users){
               var data = event.dataValues;
-              currentEvent = {id: data.id, eventName: data.name, description: data.description, location: data.location, date: data.date, cost: data.cost, guestlist: []};
+              currentEvent = {id: data.id, eventName: data.name, description: data.description, location: data.location, date: data.date, cost: data.cost, time: data.time, image: data.image,  guestlist: []};
               for(var i = 0; i < users.length; i++){
                 if(users[i].dataValues){
                   currentEvent.guestlist.push({name: users[i].dataValues.name, id: users[i].dataValues.id});
