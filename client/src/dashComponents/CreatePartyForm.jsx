@@ -6,8 +6,8 @@ import TextField from 'material-ui/lib/text-field';
 import RaisedButton from 'material-ui/lib/raised-button';
 
 class CreatePartyForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       eventName: '',
       location: '',
@@ -29,8 +29,10 @@ class CreatePartyForm extends React.Component {
 
   handleFormSubmit(event, formInput) {
     event.preventDefault();
-    this.props.postToServer(formInput.url, formInput, function() {})
+    this.props.optimisticStateUpdate(formInput)
+    this.props.postToServer(formInput.url, formInput, callback)
   }
+
 
   addPicture(picture, callback) {
     this.setState({
@@ -45,6 +47,7 @@ class CreatePartyForm extends React.Component {
   }
 
   render() {
+
     return (
       <div>
         <form onSubmit={(event) => this.handleFormSubmit(event, this.state)}>

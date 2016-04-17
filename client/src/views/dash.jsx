@@ -21,12 +21,19 @@ class Dash extends React.Component {
   }
 
   postToServer(url, postData, callback) {
-    post(url, postData);
+    post(url, postData, callback);
+  }
+
+  optimisticStateUpdate(postData) {
+    console.log('called')
     var comments = this.state.PartyDetailsData;
     postData.id = Date.now();
     var newComments = comments.concat([postData]);
     this.setState({PartyDetailsData: newComments}).bind(this);
   }
+
+
+
 
 
 
@@ -39,7 +46,7 @@ class Dash extends React.Component {
       <div>
         <h1>Dash</h1>
         <h3>Make a Party!</h3>
-        <CreatePartyForm  getFromSever={this.getFromSever.bind(this)}
+        <CreatePartyForm  optimisticStateUpdate={this.optimisticStateUpdate.bind(this)}
           postToServer={this.postToServer.bind(this)}
         />
         <h3>Your Parties!</h3>
