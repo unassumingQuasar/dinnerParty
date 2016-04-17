@@ -25149,7 +25149,7 @@
 	      date: '',
 	      description: '',
 	      inviteList: [],
-	      url: 'http://dinnersomewhere.com:3000/event',
+	      url: '/event',
 	      picture: null
 	    };
 	    return _this;
@@ -54554,7 +54554,7 @@
 	    value: function componentWillMount() {
 	      var _this2 = this;
 
-	      this.loadCommentsFromServer('http://localhost:3000/eventlist', function (data) {
+	      this.loadCommentsFromServer('/eventlist', function (data) {
 	        _this2.setState({ PartyDetailsData: data });
 	      });
 	    }
@@ -55888,7 +55888,7 @@
 	          null,
 	          _react2.default.createElement(
 	            'a',
-	            { href: 'http://dinnersomewhere.com:3000/auth/google' },
+	            { href: '/auth/google' },
 	            'Login with Google'
 	          )
 	        )
