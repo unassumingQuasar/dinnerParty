@@ -101,8 +101,7 @@ exports.getAllGuests = function(req, res){
 
 
 exports.addGuest = function(req, res){
-
- db.User.findOne({name: req.body.guestName}).then(function(guest){
+ db.User.findOne({where: {name: req.body.guestName}}).then(function(guest){
    db.Event.findById(req.body.eventId)
    .then(function(event){
      event.addUser(guest, function(){
