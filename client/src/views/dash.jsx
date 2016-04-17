@@ -25,11 +25,9 @@ class Dash extends React.Component {
   }
 
   optimisticStateUpdate(postData) {
-    console.log('called')
-    var comments = this.state.PartyDetailsData;
-    postData.id = Date.now();
-    var newComments = comments.concat([postData]);
-    this.setState({PartyDetailsData: newComments}).bind(this);
+    const oldPartyState = this.state.PartyDetailsData;
+    const newPartySate = oldPartyState.concat([postData]);
+    this.setState({PartyDetailsData: newPartySate});
   }
 
 

@@ -29,8 +29,8 @@ class CreatePartyForm extends React.Component {
 
   handleFormSubmit(event, formInput) {
     event.preventDefault();
-    this.props.optimisticStateUpdate(formInput)
-    this.props.postToServer(formInput.url, formInput, callback)
+    this.props.optimisticStateUpdate(formInput);
+    this.props.postToServer(formInput.url, formInput, function(data) {});
   }
 
 
