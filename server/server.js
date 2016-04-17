@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var cors = require('cors');
 var app = express();
-var port = 3000;
+var port = process.env.PORT || 3000;
 
 
 //PARSING
@@ -25,10 +25,10 @@ require('./routes/config.js')(app, express);
 var partyRouter = require(path.join(__dirname + '/routes/PartyRouter.js'));
 app.use(partyRouter);
 
-//START APP ON PORT 3000
+//START APP ON PORT 
 app.listen( port, function(err){
   if(err) {
-    return console.log('error listening on port 3000', err);
+    return console.log('error listening on port'+port, err);
   }
-  console.log('App is listening on port 3000!');
+  console.log('App is listening on port '+port);
 });

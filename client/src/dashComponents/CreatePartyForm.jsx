@@ -16,7 +16,8 @@ class CreatePartyForm extends React.Component {
       date: '',
       description: '',
       guestlist: [],
-      url: 'http://localhost:3000/event',
+      url: '/event',
+      inviteList: [],
       picture: null,
     };
   }

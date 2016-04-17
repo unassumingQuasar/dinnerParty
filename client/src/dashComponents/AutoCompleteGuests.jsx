@@ -14,7 +14,7 @@ class AutoCompleteGuests extends React.Component {
   }
 
   componentWillMount() {
-    this.buildDataSource('http://localhost:3000/usernames');
+    this.buildDataSource('/usernames');
   }
   // componentWillMount is invoked once before the
   // first render, see:
@@ -33,7 +33,7 @@ class AutoCompleteGuests extends React.Component {
   }
 
   handleButton(formInput) {
-    this.props.postToServer('http://localhost:3000/addguest', formInput);
+    this.props.postToServer('/addguest', formInput);
   }
 
   render() {
