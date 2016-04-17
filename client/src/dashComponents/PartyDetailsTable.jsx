@@ -47,11 +47,8 @@ class PartyDetailsTable extends React.Component {
             </div>
             <div className="row">
               <CardMedia>
-                <p>picture coming in</p>
+                <p className="col-md-12">picture coming in</p>
               </CardMedia>
-            </div>
-            <div className="row">
-              <h2 className="col-md-12">Upcoming Parties</h2>
             </div>
             <div className="row">
               <div className="col-md-6">
@@ -76,7 +73,6 @@ class PartyDetailsTable extends React.Component {
                 </List>
               </div>
             </div>
->>>>>>> Add styles and implement cards to dash feed
           </Card>
         ))};
       </div>
