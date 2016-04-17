@@ -13,7 +13,7 @@ class Dash extends React.Component {
   }
 
   componentWillMount() {
-    this.getFromSever('http://localhost:3000/eventlist', (data) => { this.setState({ PartyDetailsData: data.data }); });
+    this.getFromSever('/eventlist', (data) => { this.setState({ PartyDetailsData: data.data }); });
   }
 
   getFromSever(url, callback) {
