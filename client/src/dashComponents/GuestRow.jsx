@@ -1,15 +1,11 @@
-class GuestRow extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+import React from 'react';
 
-  render() {
-    return (
-      <tr>
-        <td>{this.props.guest.name}</td>
-      </tr>
-    )
-  }
+function GuestRow(props) {
+  return (
+    <tr>
+      <td>{ this.props.guest.name }</td>
+    </tr>
+  );
 }
 
 export default GuestRow;
