@@ -19,7 +19,7 @@ class PartyDetailsTable extends React.Component {
       <div>
         {this.props.PartyDetailsData.map((party) => (
           <Card>
-            <CardHeader title={party.eventName} />
+            <CardHeader title={party.eventName} key={party.id} />
             <CardText>
               <p>Location: {party.location}</p>
               <p>Time: {party.time}</p>
@@ -27,13 +27,13 @@ class PartyDetailsTable extends React.Component {
               <p>Description: {party.description}</p>
             </CardText>
             <CardActions>
-              <AutoCompleteGuests id={party.id} getFromSever={this.props.getFromSever.bind(this)}
+              <AutoCompleteGuests getFromSever={this.props.getFromSever.bind(this)}
                 postToServer={this.props.postToServer.bind(this)}
               />
             </CardActions>
             <List>
               {party.guestlist.map(guest => (
-                <ListItem primaryText={guest.name} />
+                <ListItem key={guest.id} primaryText={guest.name} />
               ))}
             </List>
           </Card>
