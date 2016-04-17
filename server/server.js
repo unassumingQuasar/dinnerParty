@@ -25,10 +25,10 @@ require('./routes/config.js')(app, express);
 var partyRouter = require(path.join(__dirname + '/routes/PartyRouter.js'));
 app.use(partyRouter);
 
-//START APP ON PORT 3000
+//START APP ON PORT 
 app.listen( port, function(err){
   if(err) {
-    return console.log('error listening on port 3000', err);
+    return console.log('error listening on port'+port, err);
   }
   console.log('App is listening on port '+port);
 });
