@@ -21,11 +21,15 @@ class CreatePartyForm extends React.Component {
     };
   }
 
+  onChange(source, e) {
+    const state = Object.assign({}, this.state);
+    state[source] = e.target.value;
+    this.setState(state);
+  }
+
   handleFormSubmit(event, formInput) {
     event.preventDefault();
-    this.props.postToServer(formInput.url, formInput, function(data) {
-      this.setState({ stateAtribute: data });
-    });
+    this.props.postToServer(formInput.url, formInput, function() {})
   }
 
   addPicture(picture, callback) {
@@ -34,58 +38,51 @@ class CreatePartyForm extends React.Component {
     });
   }
 
-  onChange(source, e) {
-    let state = Object.assign({}, this.state);
-    state[source] = e.target.value;
-    this.setState(state);
-  }
-
   invitePerson(person) {
-    let invited = this.state.inviteList;
+    const invited = this.state.inviteList;
     invited.push(person);
     this.setState({ inviteList: invited });
   }
 
   render() {
-        {console.log('props', this.props)}
     return (
       <div>
         <form onSubmit={(event) => this.handleFormSubmit(event, this.state)}>
           <TextField
             id="eventName"
             type="text"
-            floatingLabelText= 'Event Name'
-            onChange={this.onChange.bind(this, 'eventName')}
+            floatingLabelText= "Event Name"
+            onChange={this.onChange.bind(this, "eventName")}
           />
           <TextField
             id="location"
             type="text"
-            floatingLabelText= 'Location'
-            onChange={this.onChange.bind(this, 'location')}
+            floatingLabelText= "Location"
+            onChange={this.onChange.bind(this, "location")}
           />
           <TextField
             id="date"
             type="text"
             floatingLabelText="Date"
-            onChange={this.onChange.bind(this, 'text')}
+            onChange={this.onChange.bind(this, "text")}
           />
           <TextField
             id="time"
             type="text"
-            floatingLabelText= 'Time'
-            onChange={this.onChange.bind(this, 'time')}
+            floatingLabelText= "Time"
+            onChange={this.onChange.bind(this, "time")}
           />
           <TextField
             id="cost"
             type="text"
-            floatingLabelText= 'Cost'
-            onChange={this.onChange.bind(this, 'cost')}
+            floatingLabelText= "Cost"
+            onChange={this.onChange.bind(this, "cost")}
           />
           <TextField
             id="description"
             type="textarea"
-            floatingLabelText= 'Description'
-            onChange={this.onChange.bind(this, 'description')}
+            floatingLabelText= "Description"
+            onChange={this.onChange.bind(this, "description")}
           />
           <PhotoUpload
             addPicture={this.addPicture.bind(this)}
