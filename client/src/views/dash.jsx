@@ -41,11 +41,10 @@ class Dash extends React.Component {
     return (
       <div className='dash'>
         <h1>Dash</h1>
-        <h3>Make a Party!</h3>
         <CreatePartyForm  optimisticStateUpdate={this.optimisticStateUpdate.bind(this)}
           postToServer={this.postToServer.bind(this)}
         />
-        <h3>Your Parties!</h3>
+        <h3>Your Events</h3>
         <PartyDetailsTable PartyDetailsData={this.state.PartyDetailsData}
           getFromSever={this.getFromSever.bind(this)} postToServer={this.postToServer.bind(this)}
           otimisticGuestUpdate={this.otimisticGuestUpdate.bind(this)}
