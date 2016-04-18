@@ -34,7 +34,7 @@ class CreatePartyForm extends React.Component {
   }
 
   handleCalendar(e, date) {
-    var cleanDate = `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`;
+    var cleanDate = `${date.getMonth()+1}/${date.getDate()/${date.getFullYear()}}`;
     this.setState({
       date: cleanDate,
     });
