@@ -62,7 +62,7 @@ class PartyDetailsTable extends React.Component {
           </Card>
         ))};
       </div>
-    );
+    )
   }
 }
 

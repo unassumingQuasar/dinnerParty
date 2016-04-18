@@ -25,7 +25,7 @@ const App = () => {
       <Redirect from="/" to="/login" />
     </Router>
   );
-};
+}
 
 
 ReactDOM.render(<div>
