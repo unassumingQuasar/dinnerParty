@@ -38,9 +38,6 @@ class Dash extends React.Component {
   }
 
   render() {
-    {
-      console.log('dash state', this.state.PartyDetailsData)}
-
     return (
       <div>
         <h1>Dash</h1>
