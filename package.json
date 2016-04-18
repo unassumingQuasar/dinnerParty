@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "async-each": "^1.0.0",
+    "axios": "^0.9.1",
     "body-parser": "^1.15.0",
     "bootstrap": "^3.3.6",
     "cookie-parser": "^1.4.1",
