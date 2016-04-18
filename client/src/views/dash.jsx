@@ -31,8 +31,13 @@ class Dash extends React.Component {
     this.setState({PartyDetailsData: newPartySate});
   }
 
+  otimisticGuestUpdate(postData, index) {
+    const partyState = this.state.PartyDetailsData;
+    partyState[index].guestlist = partyState[index].guestlist.concat([{name: postData.guestName}]);
+    this.setState({PartyDetailsData: partyState});
+  }
+
   render() {
-    {console.log('dash state', this.state);}
     return (
       <div>
         <h1>Dash</h1>
@@ -43,6 +48,7 @@ class Dash extends React.Component {
         <h3>Your Parties!</h3>
         <PartyDetailsTable PartyDetailsData={this.state.PartyDetailsData}
           getFromSever={this.getFromSever.bind(this)} postToServer={this.postToServer.bind(this)}
+          otimisticGuestUpdate={this.otimisticGuestUpdate.bind(this)}
         />
       </div>
     );

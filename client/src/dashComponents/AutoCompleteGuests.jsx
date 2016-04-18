@@ -33,6 +33,7 @@ class AutoCompleteGuests extends React.Component {
   }
 
   handleButton(formInput) {
+    this.props.otimisticGuestUpdate(formInput, this.props.index);
     this.props.postToServer('/addguest', formInput);
   }
 
