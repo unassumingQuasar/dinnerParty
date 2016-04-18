@@ -32,8 +32,9 @@ class AutoCompleteGuests extends React.Component {
     return key.toLowerCase().includes(searchText.toLowerCase());
   }
 
-  handleButton(formInput) {
+  handleButton(formInput, index) {
     this.props.postToServer('/addguest', formInput);
+    this.props.otimisticGuestUpdate(formInput, index);
   }
 
   render() {
@@ -46,7 +47,7 @@ class AutoCompleteGuests extends React.Component {
           dataSource={this.state.dataSource}
           onUpdateInput={() => this.setState({ guestName: this.refs.auto.getValue() })}
         />
-        <FlatButton onClick={() => this.handleButton(this.state)}
+        <FlatButton onClick={() => this.handleButton(this.state, this.props.index)}
           label="Invite people!" backgroundColor="green"
         />
       </div>
