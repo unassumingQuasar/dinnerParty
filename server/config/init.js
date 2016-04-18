@@ -21,7 +21,7 @@ exports.Event = db.define('events', {
  date: Sequelize.STRING,
  cost: Sequelize.FLOAT,
  time: Sequelize.STRING,
- image: Sequelize.JSON
+ image: Sequelize.TEXT,
 });
 
 exports.UserEvent = db.define('userevents', {

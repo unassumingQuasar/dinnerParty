@@ -39,7 +39,7 @@ class Dash extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='dash'>
         <h1>Dash</h1>
         <h3>Make a Party!</h3>
         <CreatePartyForm  optimisticStateUpdate={this.optimisticStateUpdate.bind(this)}

@@ -27,8 +27,9 @@ class PartyDetailsTable extends React.Component {
               </div>
             </div>
             <div className="row">
+
               <CardMedia>
-                <p className="col-md-12">picture coming in</p>
+                <img className='cardImage' className="col-md-12" src={party.image}></img>
               </CardMedia>
             </div>
             <div className="row">
