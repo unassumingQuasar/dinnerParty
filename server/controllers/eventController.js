@@ -15,7 +15,6 @@ exports.createEvent = function(req, res, next) {
     //add event to host
     db.User.findOne({where: {googleId: req.user[0].googleId}})
       .then(function(user) {
-        console.log(user);
         user.addEvent(event)
           .then(function(user) {
             //send back  the event we just created so that it can be displayed in the user's event feed
@@ -45,7 +44,6 @@ exports.getAllEvents = function(req, res, next) {
         console.log('error fetching user',user);
       }
       user.getEvents().then(function(events) {
-        console.log(events);
         each(events, function(event, next) {
           if(event.dataValues) {
             event.getUsers().then(function(users) {
@@ -83,7 +81,6 @@ exports.getAllGuests = function(req, res) {
 // to allow users to be able to make events the same name as other users
   db.User.findOne({where: {googleId: req.user[0].googleId}})
     .then(function(user) {
-
       if(!user){
         return console.log('there is no user logged in!')
       }
@@ -103,13 +100,11 @@ exports.getAllGuests = function(req, res) {
 };
 
 exports.addGuest = function(req, res) {
-  console.log(req.body);
  db.User.findOne({where: {name: req.body.guestName}})
   .then(function(guest) {
     console.log(guest);
     db.Event.findById(req.body.event)
       .then(function(event) {
-        console.log(event);
         event.addUser(guest, function() {
           res.send(guest.dataValues);
         });
