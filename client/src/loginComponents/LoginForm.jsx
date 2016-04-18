@@ -8,6 +8,9 @@ import googleLogo from '../assets/google-logo.png';
 
 let style = {
   textAlign: 'center',
+  backgroundColor: 'transparent',
+  textAlign: 'center',
+  boxShadow: 'none',
 };
 
 function LoginForm() {
@@ -15,6 +18,7 @@ function LoginForm() {
     <Card style={style}>
       <div className="text-align-center">
         <CardHeader>
+          <h2>A world of great parties awaits you...</h2>
           <h2>Login with a Google Account</h2>
         </CardHeader>
         <CardActions>
