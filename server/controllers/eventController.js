@@ -13,8 +13,9 @@ exports.createEvent = function(req, res, next) {
                   image: req.body.image 
   }).then(function(event) {
     //add event to host
-    db.User.findOne({where: {googleId: req.user.googleId}})
+    db.User.findOne({where: {googleId: req.user[0].googleId}})
       .then(function(user) {
+        console.log(user);
         user.addEvent(event)
           .then(function(user) {
             //send back  the event we just created so that it can be displayed in the user's event feed
@@ -38,9 +39,13 @@ exports.updateEvent = function(req, res, next) {
 // we want to send back [{name: , date: , etc: , guestlist: [ {user}, {user} , {user}]}, {}, ]
 exports.getAllEvents = function(req, res, next) {
   var allEvents = [];
-  db.User.findOne({where: {googleId: req.user.googleId}})
+  db.User.findOne({where: {googleId: req.user[0].googleId}})
     .then(function(user) {
+      if(!user){
+        console.log('error fetching user',user);
+      }
       user.getEvents().then(function(events) {
+        console.log(events);
         each(events, function(event, next) {
           if(event.dataValues) {
             event.getUsers().then(function(users) {
@@ -76,15 +81,16 @@ exports.getAllGuests = function(req, res) {
 //the event that matches the specific event searched for
 //then get the users on that event
 // to allow users to be able to make events the same name as other users
-  db.User.findOne({where: {googleId: req.user.googleId}})
+  db.User.findOne({where: {googleId: req.user[0].googleId}})
     .then(function(user) {
+
       if(!user){
         return console.log('there is no user logged in!')
       }
       user.getEvents().then(function(events) {
         for(var i = 0; i < events.length; i++) {
           if(events[i].name === req.eventName) {
-            db.Event.findOne({id: events[i].id})
+            db.Event.findById(events[i].id)
               .then(function(event) {
                 event.getUsers().then(function(users) {
                   res.send(users);
@@ -97,10 +103,13 @@ exports.getAllGuests = function(req, res) {
 };
 
 exports.addGuest = function(req, res) {
+  console.log(req.body);
  db.User.findOne({where: {name: req.body.guestName}})
   .then(function(guest) {
-    db.Event.findById(req.body.eventId)
+    console.log(guest);
+    db.Event.findById(req.body.event)
       .then(function(event) {
+        console.log(event);
         event.addUser(guest, function() {
           res.send(guest.dataValues);
         });
