@@ -36,7 +36,7 @@ class PhotoUpload extends React.Component {
       <div>
         <div>Click or drag a photo to add it to your event!</div>
         <Dropzone multiple={false} onDrop={this.onDrop.bind(this)}>
-          <img width='195' height = '195' src={this.props.picture ? this.props.picture.preview : ''}></img>
+          <img width='195' height = '195' src={this.props.picture ? this.props.picture : ''}></img>
         </Dropzone>
         <Snackbar
           open={this.state.open}

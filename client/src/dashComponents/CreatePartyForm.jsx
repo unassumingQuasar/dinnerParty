@@ -23,6 +23,7 @@ class CreatePartyForm extends React.Component {
       url: '/event',
       inviteList: [],
       image: null,
+      imagePreview: null,
     };
   }
 
@@ -60,10 +61,10 @@ class CreatePartyForm extends React.Component {
     console.log('picture', picture);
     var file = picture;
     var reader = new FileReader();
-    reader.onloadend = () => {
+    reader.onloadend = (event) => {
       this.setState({
-        image: file,
-        imagePreviewUrl: reader.result
+        image: reader.result,
+        imagePreview: file.preview,
       });
     }
 
@@ -80,7 +81,7 @@ class CreatePartyForm extends React.Component {
   render() {
 
     return (
-      <Card>
+      <Card className='Card'>
         <div className="row">
           <h2 className="col-md-12">Create an Event</h2>
         </div>
@@ -142,7 +143,7 @@ class CreatePartyForm extends React.Component {
           </div>
           <div className="col-md-4 col-md-offset-2">
             <CardActions>
-              <PhotoUpload picture={this.state.image}
+              <PhotoUpload picture={this.state.imagePreview}
                 addPicture={this.addPicture.bind(this)}
               />
               <RaisedButton
