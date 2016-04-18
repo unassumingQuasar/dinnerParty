@@ -12,6 +12,7 @@
 .center {
   width: 40%;
   margin: 0 auto;
+  background-color: transparent; 
 }
 
 .text-align-center {

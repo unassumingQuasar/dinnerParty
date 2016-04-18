@@ -41,9 +41,19 @@ class CreatePartyForm extends React.Component {
 
 
   addPicture(picture, callback) {
-    this.setState({
-      image: picture,
-    });
+
+    console.log('picture', picture);
+    var file = picture;
+    var reader = new FileReader();
+    reader.onloadend = () => {
+      this.setState({
+        image: file,
+        imagePreviewUrl: reader.result
+      });
+    }
+
+    reader.readAsDataURL(file);
+
   }
 
   invitePerson(person) {
@@ -120,7 +130,7 @@ class CreatePartyForm extends React.Component {
           </div>
           <div className="col-md-4 col-md-offset-2">
             <CardActions>
-              <PhotoUpload
+              <PhotoUpload picture={this.state.image}
                 addPicture={this.addPicture.bind(this)}
               />
               <br /> <br />
