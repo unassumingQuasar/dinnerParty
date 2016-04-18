@@ -4,8 +4,14 @@ import '../assets/veggies.jpg';
 
 
 var background = {
-  'background-color': 'transparent',
+  'backgroundImage': 'url('+require('../assets/veggies.jpg')+')',
+  'backgroundSize': 'cover',
+  'backgroundRepeat': 'no-repeat',
+  'height': 1000+'px'
 }
+
+
+
 
 function login() {
   return (

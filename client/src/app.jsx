@@ -14,15 +14,6 @@ import './assets/styles.css';
 import 'flexboxgrid/dist/flexboxgrid.css';
 // see this on adding inline css - https://github.com/gajus/react-css-modules
 
-import './assets/veggies.jpg';
-
-
-var background = {
-  'backgroundImage': 'url('+require('./assets/veggies.jpg')+')',
-  'backgroundSize': 'cover',
-  'backgroundRepeat': 'no-repeat',
-  'height': 1000+'px'
-}
 
 
 const App = () => {
@@ -37,7 +28,7 @@ const App = () => {
 };
 
 
-ReactDOM.render(<div style={background}>
+ReactDOM.render(<div>
                   <HeaderNavigation />
                   <App />
                 </div>,
