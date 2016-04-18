@@ -34,6 +34,7 @@ class CreatePartyForm extends React.Component {
 
   handleFormSubmit(event, formInput) {
     event.preventDefault();
+    console.log(formInput);
     this.props.optimisticStateUpdate(formInput);
     this.props.postToServer(formInput.url, formInput, function(data) {});
   }
@@ -61,7 +62,7 @@ class CreatePartyForm extends React.Component {
         <div className="row">
           <div className="col-md-6">
             <CardMedia>
-              <form onSubmit={(event) => this.handleFormSubmit(event, this.state)}>
+              <form>
                 <div className="row">
                   <TextField
                     className="col-md-6"
@@ -126,6 +127,7 @@ class CreatePartyForm extends React.Component {
               <RaisedButton
                 type="submit"
                 label="Create Dinner Party"
+                onClick={(event) => this.handleFormSubmit(event, this.state)}
               />
             </CardActions>
           </div>
