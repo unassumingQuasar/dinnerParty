@@ -29,40 +29,13 @@ class Dash extends React.Component {
     const oldPartyState = this.state.PartyDetailsData;
     const newPartySate = oldPartyState.concat([postData]);
     this.setState({PartyDetailsData: newPartySate});
-    // var guestlist = this.state.PartyDetailsData[0].guestlist;
-    //   console.log('dash state', guestlist.push({name: postData}))
   }
 
-
-  // optimisticName(postData, index) {
-  //   console.log('name!!!', postData)
-  //   const oldPartyState = this.state.PartyDetailsData;
-  //   const guestlist = this.state.PartyDetailsData[index].guestlist;
-  //   const newGuestList = guestlist.concat([{name: postData.guestName}]);
-  //   console.log('newlist', newGuestList)
-  //   this.setState({guestlist: newGuestList});
-  //   this.forceUpdate()
-  // }
-
-
-  optimisticName(postData, index) {
-    console.log('name!!!', postData)
-    const oldPartyState = this.state.PartyDetailsData;
-    const guestlist = oldPartyState[index].guestlist;
-    const newGuestList = guestlist.concat([{name: postData.guestName}]);
-    oldPartyState[index].guestlist = newGuestList
-    console.log('newlist', newGuestList)
-    this.setState({PartyDetailsData: oldPartyState});
-    console.log(oldPartyState)
-    this.forceUpdate()
+  otimisticGuestUpdate(postData, index) {
+    const partyState = this.state.PartyDetailsData;
+    partyState[index].guestlist = partyState[index].guestlist.concat([{name: postData.guestName}]);
+    this.setState({PartyDetailsData: partyState});
   }
-
-
-
-
-
-
-
 
   render() {
     {
@@ -77,7 +50,7 @@ class Dash extends React.Component {
         />
         <h3>Your Parties!</h3>
         <PartyDetailsTable PartyDetailsData={this.state.PartyDetailsData}
-        optimisticName={this.optimisticName.bind(this)}
+        otimisticGuestUpdate={this.otimisticGuestUpdate.bind(this)}
           getFromSever={this.getFromSever.bind(this)} postToServer={this.postToServer.bind(this)}
         />
       </div>

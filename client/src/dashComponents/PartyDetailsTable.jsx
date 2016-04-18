@@ -44,7 +44,7 @@ class PartyDetailsTable extends React.Component {
                 <CardActions>
                   <AutoCompleteGuests getFromSever={this.props.getFromSever.bind(this)}
                     postToServer={this.props.postToServer.bind(this)}
-                    optimisticName={this.props.optimisticName.bind(this)}
+                    otimisticGuestUpdate={this.props.otimisticGuestUpdate.bind(this)}
                     id={party.id}
                     index={i}
                   />
