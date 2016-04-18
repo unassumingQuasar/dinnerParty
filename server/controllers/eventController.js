@@ -2,6 +2,8 @@ var Sequelize = require('sequelize');
 var db = require('../config/init.js');
 var each = require('async-each');
 var _ = require('underscore');
+var ingredients = require('../config/recipeSeeds.js');
+
 //make a new event by a specific host
 exports.createEvent = function(req, res, next) {
   db.Event.create({name: req.body.eventName,
@@ -13,14 +15,24 @@ exports.createEvent = function(req, res, next) {
                   image: req.body.image 
   }).then(function(event) {
     //add event to host
-    db.User.findOne({where: {googleId: req.user[0].googleId}})
+    db.User.findOne({where: {googleId: req.user[0].googleId} })
       .then(function(user) {
         user.addEvent(event)
           .then(function(user) {
             //send back  the event we just created so that it can be displayed in the user's event feed
-            res.send(event.dataValues);
+            // res.send(event.dataValues);
           })
-    })
+    });
+    db.Recipe.findAll({where: {ingredient: ingredients[Math.floor(Math.random() * ingredients.length)]} })
+      .then(function(recipes) {
+        console.log(recipes);
+        event.addRecipes(recipes)
+          .then(function(recipe) {
+            console.log(recipe);
+            //send back  the event we just created so that it can be displayed in the user's event feed
+            // res.send(event.dataValues);
+          })
+      });
   });
 };
 
@@ -38,7 +50,7 @@ exports.updateEvent = function(req, res, next) {
 // we want to send back [{name: , date: , etc: , guestlist: [ {user}, {user} , {user}]}, {}, ]
 exports.getAllEvents = function(req, res, next) {
   var allEvents = [];
-  db.User.findOne({where: {googleId: req.user[0].googleId}})
+  db.User.findOne({where: {googleId: req.user[0].googleId} })
     .then(function(user) {
       if(!user){
         console.log('error fetching user',user);
@@ -47,23 +59,29 @@ exports.getAllEvents = function(req, res, next) {
         each(events, function(event, next) {
           if(event.dataValues) {
             event.getUsers().then(function(users) {
-              var data = event.dataValues;
-              currentEvent = {id: data.id, 
-                              eventName: data.name, 
-                              description: data.description, 
-                              location: data.location, 
-                              date: data.date, 
-                              cost: data.cost, 
-                              time: data.time, 
-                              image: data.image, 
-                              guestlist: []};
-              for(var i = 0; i < users.length; i++) {
-                if(users[i].dataValues) {
-                  currentEvent.guestlist.push({name: users[i].dataValues.name, id: users[i].dataValues.id});
+              event.getRecipes().then(function(recipes){
+                var data = event.dataValues;
+                currentEvent = {id: data.id, 
+                                eventName: data.name, 
+                                description: data.description, 
+                                location: data.location, 
+                                date: data.date, 
+                                cost: data.cost, 
+                                time: data.time, 
+                                image: data.image, 
+                                guestlist: [],
+                                recipelist: [] };
+                for(var i = 0; i < users.length; i++) {
+                  if(users[i].dataValues) {
+                    currentEvent.guestlist.push({name: users[i].dataValues.name, id: users[i].dataValues.id});
+                  }
                 }
-              }
-              allEvents.push(currentEvent);
-              next();
+                for(var i =0; i < recipes.length; i++) {
+                  currentEvent.recipelist.push({recipeName: recipes[i].dataValues.name, recipeLink: recipes[i].dataValues.recipeUrl});
+                }
+                allEvents.push(currentEvent);
+                next();
+              });
             });
           }
         }, function() {
