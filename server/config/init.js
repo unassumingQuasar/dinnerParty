@@ -11,7 +11,7 @@ var db = new Sequelize('dinner', null, null, {
 exports.User = db.define('users', {
  name: Sequelize.STRING,
  googleId: Sequelize.STRING,  
- image: Sequelize.JSON
+ image: Sequelize.TEXT
 });
 
 exports.Event = db.define('events', {
