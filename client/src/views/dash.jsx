@@ -1,6 +1,7 @@
 import React from 'react';
 import CreatePartyForm from '../dashComponents/CreatePartyForm.jsx';
 import PartyDetailsTable from '../dashComponents/PartyDetailsTable.jsx';
+
 import get from '../utils/get.js';
 import post from '../utils/post.js';
 
@@ -29,14 +30,6 @@ class Dash extends React.Component {
     const newPartySate = oldPartyState.concat([postData]);
     this.setState({PartyDetailsData: newPartySate});
   }
-
-
-
-
-
-
-
-
 
   render() {
     {console.log('dash state', this.state);}
