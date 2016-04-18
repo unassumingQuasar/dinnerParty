@@ -32,8 +32,7 @@ class PartyDetailsTable extends React.Component {
               </div>
             </div>
             <div className="row">
-
-                <img className='cardImage' className="col-md-12" src={party.image}></img>
+                <img className='cardImage' src={party.image}></img>
             </div>
             <div className="row">
               <div className="col-md-6">
