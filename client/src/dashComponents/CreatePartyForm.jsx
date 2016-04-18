@@ -1,7 +1,7 @@
 import React from 'react';
-import InviteFriendForm from './InviteFriendForm.jsx';
 import PhotoUpload from './formComponents/PhotoUpload.jsx';
 import DatePicker from 'material-ui/lib/date-picker/date-picker';
+import TimePicker from 'material-ui/lib/time-picker/time-picker';
 import TextField from 'material-ui/lib/text-field';
 import RaisedButton from 'material-ui/lib/raised-button';
 import Card from 'material-ui/lib/card/card';
@@ -30,6 +30,21 @@ class CreatePartyForm extends React.Component {
     const state = Object.assign({}, this.state);
     state[source] = e.target.value;
     this.setState(state);
+    console.log(this.state);
+  }
+
+  handleCalendar(e, date) {
+    let cleanDate = `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}`;
+    this.setState({
+      date: cleanDate,
+    });
+  }
+
+  handleClock(err, date) {
+    var cleanDate = date.toLocaleTimeString('en-US');
+    this.setState({
+      time: cleanDate,
+    });
   }
 
   handleFormSubmit(event, formInput) {
@@ -90,21 +105,18 @@ class CreatePartyForm extends React.Component {
                     floatingLabelText= 'Location'
                     onChange={this.onChange.bind(this, 'location')}
                   />
-                  <TextField
-                    className="col-md-6"
-                    id="date"
-                    type="text"
+                  <DatePicker
                     floatingLabelText="Date"
-                    onChange={this.onChange.bind(this, 'text')}
+                    autoOk={true}
+                    onChange={this.handleCalendar.bind(this)}
                   />
                 </div>
                 <div className="row">
-                  <TextField
+                  <TimePicker
                     className="col-md-6"
                     id="time"
-                    type="text"
+                    onChange={this.handleClock.bind(this)}
                     floatingLabelText= 'Time'
-                    onChange={this.onChange.bind(this, 'time')}
                   />
                   <TextField
                     className="col-md-6"
@@ -133,9 +145,7 @@ class CreatePartyForm extends React.Component {
               <PhotoUpload picture={this.state.image}
                 addPicture={this.addPicture.bind(this)}
               />
-              <br /> <br />
               <RaisedButton
-                type="submit"
                 label="Create Dinner Party"
                 onClick={(event) => this.handleFormSubmit(event, this.state)}
               />

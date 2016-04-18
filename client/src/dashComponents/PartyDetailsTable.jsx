@@ -35,6 +35,7 @@ class PartyDetailsTable extends React.Component {
               <div className="col-md-6">
                 <CardText>
                   <p className="large-text">Location: {party.location}</p>
+                  <p className="large-text">Date: {party.date}</p>
                   <p className="large-text">Time: {party.time}</p>
                   <p className="large-text">Cost: {party.cost}</p>
                   <p className="large-text">Description: {party.description}</p>
