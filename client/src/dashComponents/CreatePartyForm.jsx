@@ -6,7 +6,7 @@ import TextField from 'material-ui/lib/text-field';
 import RaisedButton from 'material-ui/lib/raised-button';
 import Card from 'material-ui/lib/card/card';
 import CardMedia from 'material-ui/lib/card/card-media';
-
+import CardHeader from 'material-ui/lib/card/card-header'
 import CardActions from 'material-ui/lib/card/card-actions';
 
 class CreatePartyForm extends React.Component {
@@ -82,12 +82,14 @@ class CreatePartyForm extends React.Component {
 
     return (
       <Card className='Card'>
-        <div className="row">
-          <h2 className="col-md-12">Create an Event</h2>
-        </div>
+      <CardHeader       
+        title="Host A Party"
+        actAsExpander={true}
+        showExpandableButton={true}/>
+        
+        <CardMedia className="col-md-12" expandable={true}>
         <div className="row">
           <div className="col-md-6">
-            <CardMedia>
               <form>
                 <div className="row">
                   <TextField
@@ -139,7 +141,6 @@ class CreatePartyForm extends React.Component {
                   />
                 </div>
               </form>
-            </CardMedia>
           </div>
           <div className="col-md-4 col-md-offset-2">
             <CardActions>
@@ -153,6 +154,7 @@ class CreatePartyForm extends React.Component {
             </CardActions>
           </div>
         </div>
+        </CardMedia>
       </Card>
     );
   }

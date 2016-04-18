@@ -21,16 +21,18 @@ class PartyDetailsTable extends React.Component {
       <div>
         {this.props.PartyDetailsData.map((party, i) => (
           <Card>
+            <CardHeader 
+              title={party.eventName} 
+              key={party.id} 
+              actAsExpander={true}
+              showExpandableButton={true} />
+            <CardMedia expandable={true}>
             <div className="row">
               <div className="col-md-12">
-                <CardHeader title={party.eventName} key={party.id} />
               </div>
             </div>
             <div className="row">
-
-              <CardMedia>
-                <img className='cardImage' className="col-md-12" src={party.image}></img>
-              </CardMedia>
+                <img className='cardImage' src={party.image}></img>
             </div>
             <div className="row">
               <div className="col-md-6">
@@ -59,10 +61,11 @@ class PartyDetailsTable extends React.Component {
                 </List>
               </div>
             </div>
+            </CardMedia>
           </Card>
         ))};
       </div>
-    );
+    )
   }
 }
 
