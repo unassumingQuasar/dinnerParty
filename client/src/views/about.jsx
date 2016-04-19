@@ -5,35 +5,40 @@ import CardHeader from 'material-ui/lib/card/card-header';
 import CardText from 'material-ui/lib/card/card-text';
 import CardMedia from 'material-ui/lib/card/card-media';
 
+import lizzy from '../assets/lizzy.jpg';
+import jen from '../assets/jen.jpg';
+import ken from '../assets/ken.jpg';
+import mark from '../assets/mark.jpg';
+
 let aboutUs = [
 
   {
     id: 1,
     name: 'Mark',
     job: 'Button Presser',
-    description: 'lololol test',
-    picture: '',
+    description: 'Presses buttons until things work. Sometimes turns out well',
+    picture: mark,
   },
   {
     id: 2,
     name: 'Jen',
-    job: 'Build Captain',
-    description: '',
-    picture: '',
+    job: 'Component Captain',
+    description: 'Handles props like a boss',
+    picture: jen,
   },
   {
     id: 3,
     name: 'Lizzy',
-    job: '',
-    description: '',
-    picture: '',
+    job: 'Sequalizer',
+    description: 'Likes learning about Blobs and can tell you all about them',
+    picture: lizzy,
   },
   {
     id: 4,
     name: 'Kenneth',
-    job: '',
-    description: '',
-    picture: '',
+    job: 'Data Cruncher',
+    description: 'Enjoys jumping into the deepend where he has no idea what is happening. See postgres backend',
+    picture: ken,
   },
 
 ];
@@ -41,6 +46,7 @@ let aboutUs = [
 let style = {
   paddingRight: '0px',
 };
+
 
 class about extends React.Component {
   render() {
