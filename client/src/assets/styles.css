@@ -37,3 +37,8 @@ body {
   max-height: 225px;
 
 }
+/* about page */
+
+.set-height {
+  height: 200px;
+}
